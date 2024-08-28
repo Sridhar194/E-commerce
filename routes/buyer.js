@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-const { getRoleID } = require('../models/roles');; // Model for the rba collection
+const { getRoleID } = require('../models/roles'); // Model for the rba collection
+const Sequence = require('../models/sequence');
+const Banner = require('../models/Banner');
 
 // Routes code start
 const router = express.Router(); // Created a router
@@ -25,6 +27,7 @@ mongoose.connect(process.env.MONGODB_URI,{
 
 // Define a User schema
 const userSchema = new mongoose.Schema({
+    user_id: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true }, // Ensure email is unique
     phone: { type: String, required: true }, // Add phone number
@@ -33,6 +36,19 @@ const userSchema = new mongoose.Schema({
 },{ versionKey: false }); // Disable version key
 
 const User = mongoose.model('User', userSchema);
+//user id 
+async function generateUserId() {
+    let sequence = await Sequence.findOne();
+
+    if (!sequence) {
+        sequence = new Sequence({ user_id: 1 });
+    } else {
+        sequence.user_id += 1;
+    }
+
+    await sequence.save();
+    return sequence.user_id.toString();
+}
 
 // API endpoint to handle registration routes
 router.post('/register', async (req, res) => {
@@ -61,8 +77,10 @@ router.post('/register', async (req, res) => {
 
         // Hash the password before saving
         const hashedPassword = await bcrypt.hash(password, 10);
-
+        const user_id = await generateUserId();
+        
         const newUser = new User({
+            user_id,
             name,
             email,
             phone,
@@ -116,5 +134,62 @@ router.post('/login', async (req, res) => {
     }
 });
 
+//banner routes
+// Route to get all banner images
+router.get('/banner', async (req, res) => {
+    try {
+        console.log('Received request to fetch all banner images.');
+
+        const banners = await Banner.find();
+        console.log('Fetched banners from MongoDB:', banners);
+
+        res.json(banners);
+        console.log('Sent banners as JSON response.');
+    } catch (err) {
+        console.error('Error fetching banner images:', err);
+        res.status(500).json({ error: 'Failed to fetch banner images' });
+    }
+});
+// cloudinary webhook notification
+// Handle Cloudinary webhook events
+router.post('/cloudinary-webhook', async (req, res) => {
+    const { public_id, secure_url, resource_type, event_type } = req.body;
+
+    console.log('Received webhook:', req.body);
+
+    try {
+        if (resource_type === 'image') {
+            if (event_type === 'upload' || event_type === 'update') {
+                // Handle image upload or update
+                const updatedBanner = await Banner.findOneAndUpdate(
+                    { public_id: public_id },
+                    { url: secure_url },
+                    { new: true, upsert: true }
+                );
+                console.log('Image updated or created in MongoDB:', updatedBanner);
+            } else if (event_type === 'delete') {
+                // Handle image deletion
+                const deletedBanner = await Banner.findOneAndDelete({ public_id: public_id });
+                console.log('Image deleted from MongoDB:', deletedBanner);
+            }
+        } else if (resource_type === 'video') {
+            if (event_type === 'upload' || event_type === 'update') {
+                // Handle video upload or update
+                // You might need to store video information in a different collection or model
+                console.log('Video uploaded or updated. You might want to handle this differently.');
+            } else if (event_type === 'delete') {
+                // Handle video deletion
+                console.log('Video deleted. You might want to handle this differently.');
+            }
+        } else {
+            console.log('Unsupported resource type:', resource_type);
+        }
+
+        res.status(200).send('Resource updated');
+    } catch (error) {
+        console.error('Error handling webhook event:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 // Export the routes
 module.exports = router;
