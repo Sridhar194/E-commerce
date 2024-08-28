@@ -1,0 +1,15 @@
+.header1{
+    display: flex;
+}
+.shopping-icon{
+    height: 40px;
+    width: 50px;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+.search-bar{
+    height: 25px;
+    width: 25px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
