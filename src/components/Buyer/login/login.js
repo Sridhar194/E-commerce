@@ -83,7 +83,7 @@ const Login = () => {
                 <div className="navbar-container">
                     <div className="navbar-logo">DealDone</div>
                     <ul className="navbar-menu">
-                        <li>Home</li>
+                    <li><Link to="/Home" className="sign-up-link">Home</Link></li> 
                         <li>Contact</li>
                         <li>About</li>
                         <li><Link to="/signup" className="sign-up-link">Sign up</Link></li> {/* Add a class for styling */}
