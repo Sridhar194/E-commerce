@@ -32,7 +32,7 @@ const Signup = () => {
             !/[a-z]/.test(password) ||
             !/\d/.test(password) ||
             !/[@$!%*?&#]/.test(password)) {  
-            errors.push("Password must be strong.");
+            errors.push("Password must be at least 8 characters, including uppercase, lowercase, digits, and special characters.");
         }
         
         return errors;

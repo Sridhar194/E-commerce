@@ -18,6 +18,7 @@ const Banner = () => {
     };
 
     fetchBannerImages();
+    
   }, []);
 
   useEffect(() => {
