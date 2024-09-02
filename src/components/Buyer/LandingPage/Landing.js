@@ -11,7 +11,7 @@ import Ourproducts from './Ourproducts.js';
 import Newarrivals from './Newarrivals.js';
 import AdBanner from './Adbanner.js';
 
-const Homepage = () => {
+const LandingPage = () => {
     return (
         <div className="homepage">
             <Header/>
@@ -31,4 +31,4 @@ const Homepage = () => {
     );
 };
 
-export default Homepage;
+export default LandingPage;
