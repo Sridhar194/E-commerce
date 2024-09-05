@@ -1,13 +1,25 @@
 // Load environment variables from .env file
 require('dotenv').config();
 const express = require('express');
+const session = require('express-session');
+const crypto = require('crypto');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-
+//middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//session
+//generating a secret key to use in session
+app.use(session({
+    secret:'9e59e449d56f6cc6dc43140764bcffc322010e06ef8abbfbe8de41fc65e4c99a9805e175c98adaee8e683f1f615c80cf95bfa5565351d66cd387d212fad28fc2', // Change this to a secure random string
+    resave: false,
+    saveUninitialized: true
+}));
+//end session
 
 // Import the buyer routes
 const buyersRoutes = require('./routes/buyer');

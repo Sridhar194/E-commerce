@@ -32,6 +32,7 @@ const storeBannerImages = async () => {
         const images = result.resources.map(image => ({
             url: image.secure_url,
             public_id: image.public_id,
+            name: image.public_id.split('/').pop()
         }));
 
         // Clear existing banner images in MongoDB

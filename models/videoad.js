@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const bannerSchema = new mongoose.Schema({
+const VideoadSchema = new mongoose.Schema({
   url: {
     type: String,
     required: true,
@@ -15,6 +15,6 @@ const bannerSchema = new mongoose.Schema({
   }
 });
 
-const Banner = mongoose.model('Banner', bannerSchema);
+const Videoad = mongoose.model('Videoad',VideoadSchema);
 
-module.exports = Banner;
+module.exports = Videoad;
