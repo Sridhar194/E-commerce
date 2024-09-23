@@ -9,6 +9,7 @@ const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
 };
 
+
   return (
           <nav className="navbar">
                 <div className="navbar-container">
@@ -18,14 +19,19 @@ const toggleDropdown = () => {
                         <li><Link to="/contact" className="Button">Contact</Link></li>
                         <li><Link to="/about" className="Button">About</Link></li>
                         <li className="sign-in-container" onClick={toggleDropdown}>
-                            <span className="Button">Sign In</span>
-                            {dropdownOpen && (
-                                <div className="dropdown-menu">
-                                    <Link to="/login" className="dropdown-item">Buyer</Link>
-                                    <Link to="/seller" className="dropdown-item">Seller</Link>
-                                </div>
-                            )}
-                        </li>
+                        <span className="Button">Sign In</span>
+                         {dropdownOpen && (
+                       <div className="dropdown-menu show"> {/* Add the 'show' class */}
+                          <ul>
+                            <li><Link to="/login" className="dropdown-item">Buyer</Link></li>
+                            <li><Link to="/seller" className="dropdown-item">Seller</Link></li>
+                          </ul>
+                     </div>
+                )}
+            </li>
+
+
+                        
                     </ul>
                     <div className="navbar-right">
                         <div className="search-container">

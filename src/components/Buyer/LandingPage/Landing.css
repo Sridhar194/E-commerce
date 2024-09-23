@@ -47,7 +47,7 @@
 .navbar-menu li {
   cursor: pointer;
   align-items: center;
-  margin: 0; /* Adjusted margins for spacing */
+  margin: 100px; /* Adjusted margins for spacing */
   list-style: none; /* Remove bullet points */
 }
 

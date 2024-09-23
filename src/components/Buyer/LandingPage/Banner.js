@@ -9,7 +9,7 @@ const Banner = () => {
     // Fetch banner images from the backend
     const fetchBannerImages = async () => {
       try {
-        const response = await fetch('/api/banner-images'); // Replace with your actual API endpoint
+        const response = await fetch('172.22.32.1/api/banner-images'); // Replace with your actual API endpoint
         const data = await response.json();
         setBannerImages(data);
       } catch (error) {
