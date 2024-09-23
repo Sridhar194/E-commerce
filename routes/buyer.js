@@ -1,7 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const Product = require('../models/Product');
 const bcrypt = require('bcrypt');
 const { getRoleID } = require('../models/roles'); // Model for the rba collection
 const Sequence = require('../models/sequence');
@@ -9,22 +12,6 @@ const Banner = require('../models/Banner');
 const Videoad = require('../models/videoad');
 // Routes code start
 const router = express.Router(); // Created a router
-//session
-// const secret= crypto.randomBytes(64).toString('hex');//generating a secret key to use in session
-
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-
-// app.use(session({
-//     secret: secret, // Change this to a secure random string
-//     resave: false,
-//     saveUninitialized: true
-// }));
-//end session
-// Middleware
-// router.use(cors());
-// End routes code
-
 // Connect to MongoDB
 console.log('MONGODB_URI:', process.env.MONGODB_URI);
 mongoose.connect(process.env.MONGODB_URI,{
@@ -33,11 +20,27 @@ mongoose.connect(process.env.MONGODB_URI,{
 }).catch(err => {
     console.error('MongoDB connection error:', err);
 });
+router.use(cookieParser());
+router.use(cors({
+    origin:"http://localhost:3000",
+    methods: ["POST","GET","PUT"],
+    credentials: true
+}));
 
-
+router.use(session({
+    secret: '9e59e449d56f6cc6dc43140764bcffc322010e06ef8abbfbe8de41fc65e4c99a9805e175c98adaee8e683f1f615c80cf95bfa5565351d66cd387d212fad28fc2',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,     // Helps prevent XSS attacks by making the cookie inaccessible to JavaScript on the frontend
+        secure: false,      // Set this to true when using HTTPS
+        maxAge: 1000 * 60 * 60 * 24,  // Set an appropriate expiration time (e.g., 24 hours)
+        sameSite: 'lax'
+    }
+}));
 // Define a User schema
 const userSchema = new mongoose.Schema({
-    user_id: { type: String, required: true, unique: true },
+    user_id: { type: Number, required: true, unique: true },
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true }, // Ensure email is unique
     phone: { type: String, required: true }, // Add phone number
@@ -138,16 +141,18 @@ router.post('/login', async (req, res) => {
         if (user.roleID !== userRoleID) {
             return res.status(403).json({ message: 'Unauthorized access' });
         }
-        //update status is active
-        user.status='active';
-        const updatedUser= await user.save(); // Set user status to active
+         // Set session data first
+        req.session.user_id = user._id;
+        console.log(req.session.user_id);
+        req.session.roleID = user.roleID;
+        console.log(req.session.roleID);
 
-        // Set session data
-        if(updatedUser.status ==='active'){
-          req.session.user_id = updatedUser._id;
-          req.session.roleID = updatedUser.roleID;
+       // If session is stored successfully, then update the status to 'active'
+       if (req.session.user_id && req.session.roleID) {
+        user.status = 'active';
+        const updatedUser = await user.save();
 
-        res.status(200).json({
+        return res.status(200).json({
             message: 'Logged in successfully',
             userId: updatedUser._id,
             roleID: updatedUser.roleID,
@@ -161,6 +166,26 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
+// // Logout route
+// router.post('/logout', (req, res) => {
+//     // Check if session exists
+//     if (req.session.user_id) {
+//         // Destroy the session
+//         req.session.destroy((err) => {
+//             if (err) {
+//                 console.error('Error destroying session:', err);
+//                 return res.status(500).json({ message: 'Failed to log out. Please try again.' });
+//             }
+
+//             // Clear the session cookie
+//             res.clearCookie('connect.sid'); // Assuming you are using 'connect.sid' as session cookie name
+//             res.status(200).json({ message: 'Logged out successfully.' });
+//         });
+//     } else {
+//         // If no session found
+//         res.status(400).json({ message: 'No active session found.' });
+//     }
+// });
 // Fetch profile details
 router.get('/profile', async (req, res) => {
     const { user_id, roleID, status } = req.session;
@@ -315,5 +340,45 @@ router.get('/video', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch video images' });
     }
 });
+
+// Fetch products for buyer homepage
+router.get('/', async (req, res) => {
+    try {
+      const flashSales = await Product.find({ discountType: 'percentage' });
+      const newArrivals = await Product.find().sort({ _id: -1 }).limit(10);
+      const bestSelling = await Product.find({ bestSelling: true });
+      res.status(200).json({ flashSales, newArrivals, bestSelling });
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      res.status(500).json({ message: 'Error fetching products', error });
+    }
+});
+
+  //flash sales
+router.get('/flashsales', async (req, res) => {
+    try {
+      // Fetch products where productDiscount is not null or an empty string
+      const flashSales = await Product.find({ productDiscount: { $exists: true } });//$ne: ''
+      res.status(200).json(flashSales);
+    } catch (error) {
+      console.error('Error fetching flash sales products:', error);
+      res.status(500).json({ message: 'Error fetching flash sales products', error });
+    }
+});
+
+router.get('/newarrivals', async (req, res) => {
+    try {
+      //finding products by sorting them in descending orders 
+      const newArrivals = await Product.find().sort({ createdAt: -1 }).limit(4);//limiting to 4 
+      console.log('Fetched new arrival products:', newArrivals);
+      res.status(200).json(newArrivals);
+    } catch (error) {
+      console.error('Error fetching new arrival products:', error);
+      res.status(500).json({ message: 'Error fetching new arrival products', error });
+    }
+});
+//http://localhost:5000/api/buyer/newarrivals
 // Export the routes
 module.exports = router;
+
+
