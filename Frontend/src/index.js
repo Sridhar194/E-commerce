@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Signup from './components/Buyer/signup/signup';
-import Login from './components/Buyer/login/login';
-import LandingPage from './components/Buyer/LandingPage/Landing';
+import Signup from './Buyer/UPM/signup/signup';
+import Login from './Buyer/UPM/login/login';
+import LandingPage from './Buyer/LandingPage/Landing';
 
-import Homepage from './components/Buyer/AccountHome/home';
+import Homepage from './Buyer/AccountHome/home';
 import './index.css'; // General CSS styles
-import AccountPage from './components/Buyer/ProfileManagment/account';
+import AccountPage from './Buyer/UPM/ProfileManagment/account';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
