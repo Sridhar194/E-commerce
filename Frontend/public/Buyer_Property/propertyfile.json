@@ -1,0 +1,139 @@
+{
+    "navbarLogo": "DealDone",
+    "navbarPromoMsg": "Summer Sale For All Swim Suits...",
+    "navbarLinks": [
+      { "label": "Home", "url": "/Home" },
+      { "label": "Contact", "url": "/contact" },
+      { "label": "About", "url": "/about" },
+      { "label": "Sign up", "url": "/signup" }
+    ],
+      
+  
+    "footerAddress": {
+      "addressLine1": "Sector 12, Akurdi",
+      "city": "Pune",
+      "state": "Maharashtra",
+      "zip": "412356",
+      "email": "dealdone@gmail.com",
+      "phone": "+91 7894561230"
+    },
+  
+    "footerAccountLinks": [
+      { "label": "My Account", "url": "/myAccount" },
+      { "label": "Login / Register", "url": "/login" },
+      { "label": "Cart", "url": "/cart" },
+      { "label": "Wishlist", "url": "/wishlist" },
+      { "label": "Shop", "url": "/shop" }
+    ],
+  
+    "footerHelpLinks": [
+      { "label": "Privacy Policy", "url": "/privacy-policy" },
+      { "label": "Terms Of Use", "url": "/terms-of-use" },
+      { "label": "FAQ", "url": "/faq" },
+      { "label": "Contact", "url": "/contact" },
+      { "label": "Help", "url": "/help" }
+    ],
+  
+    "signupPageDetails": {
+      "promoMessage": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! ShopNow",
+      "formHeading": "Create an account",
+      "formSubHeading": "Enter your details below",
+      "submitButtonLabel": "Create Account",
+      "googleButtonLabel": "Sign up with Google",
+      "alreadyAccountText": "Already have an account?",
+      "loginText": "Log in"
+    },
+  
+    "loginPageDetails": {
+      "promoMessage": "Big festival sale - OFF 50%! ShopNow",
+      "formHeading": "Login",
+      "formSubHeading": "Enter your credentials below",
+      "submitButtonLabel": "Log In",
+      "forgotPasswordButton": "Forgot Password?",
+      "noAccountText": "Don't have an account?",
+      "signupText": "Sign up"
+    },
+
+
+  
+    "signupPage": {
+        "promoMessage": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
+        "formHeading": "Create an account",
+        "formSubHeading": "Enter your details below",
+        "submitButtonLabel": "Create Account",
+        "googleButtonLabel": "Sign up with Google",
+        "alreadyAccountText": "Already have an account?",
+        "loginText": "Log in"
+    },
+    "navbarLogo": "DealDone",
+    "navbarLinks": [
+        {
+            "label": "Home",
+            "url": "/Home"
+        },
+        {
+            "label": "Contact",
+            "url": "/contact"
+        },
+        {
+            "label": "About",
+            "url": "/about"
+        },
+        {
+            "label": "Sign in",
+            "url": "/login"
+        }
+    ],
+    "footerAddress": {
+        "addressLine1": "Sector 12, Akurdi",
+        "city": "Pune",
+        "state": "Maharashtra",
+        "zip": "33",
+        "email": "dealdone@gmail.com",
+        "phone": "+88015-88888-9999"
+    },
+    "footerAccountLinks": [
+        {
+            "label": "My Account",
+            "url": "/account"
+        },
+        {
+            "label": "Login / Register",
+            "url": "/login"
+        },
+        {
+            "label": "Cart",
+            "url": "/cart"
+        },
+        {
+            "label": "Wishlist",
+            "url": "/wishlist"
+        },
+        {
+            "label": "Shop",
+            "url": "/shop"
+        }
+    ],
+    "footerHelpLinks": [
+        {
+            "label": "Privacy Policy",
+            "url": "/privacy"
+        },
+        {
+            "label": "Terms Of Use",
+            "url": "/terms"
+        },
+        {
+            "label": "FAQ",
+            "url": "/faq"
+        },
+        {
+            "label": "Contact",
+            "url": "/contact"
+        },
+        {
+            "label": "Help",
+            "url": "/help"
+        }
+    ]
+}

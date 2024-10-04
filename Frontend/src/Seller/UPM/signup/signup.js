@@ -231,7 +231,7 @@ const Signup = () => {
                         <button type="button" className="google-signup-btn" onClick={handleGoogleSignup}><FcGoogle className='google'/>Sign up with Google</button>
                     </form>
                     <p>Already have an account? 
-                    <Link to="/login" className='sign-up'> Log in</Link></p>
+                    <Link to="/seller/login" className='sign-up'> Log in</Link></p>
                     </div>
             </div>
             <footer>

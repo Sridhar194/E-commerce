@@ -1,17 +1,38 @@
-import React, { useState } from 'react';
-import './login.css'; // Ensure this CSS file exists
+import React, { useEffect, useState } from 'react';
+import './login.css';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { RiCopyrightLine } from 'react-icons/ri';
 import shoping from '../../Assets/images/Shopingimg.png';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-
 const Login = () => {
     const [emailOrPhone, setEmailOrPhone] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
     const [showPassword, setShowPassword] = useState(false);
+    
+    // For fetching data from propertyfile.json
+    const [navbarLinks, setNavbarLinks] = useState([]);
+    const [navbarLogo, setNavbarLogo] = useState('');
+    const [navbarPromoMsg, setNavbarPromoMsg] = useState('');
+    const [footerAddress, setFooterAddress] = useState({});
+    const [footerAccountLinks, setFooterAccountLinks] = useState([]);
+    const [footerHelpLinks, setFooterHelpLinks] = useState([]);
+
+    useEffect(() => {
+        fetch('Buyer_Property/propertyfile.json')
+            .then(response => response.json())
+            .then(data => {
+                setNavbarLinks(data.navbarLinks);
+                setNavbarLogo(data.navbarLogo);
+                setNavbarPromoMsg(data.navbarPromoMsg);
+                setFooterAddress(data.footerAddress);
+                setFooterAccountLinks(data.footerAccountLinks);
+                setFooterHelpLinks(data.footerHelpLinks);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }, []);
 
     const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const validatePhone = (phone) => /^\d{10}$/.test(phone);
@@ -19,7 +40,7 @@ const Login = () => {
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
-    }; // <-- Missing closing curly brace added here
+    };
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -56,7 +77,6 @@ const Login = () => {
 
             if (response.ok) {
                 alert('Logged in successfully');
-                // Redirect or perform other actions after successful login
             } else {
                 const errorData = await response.json();
                 alert(`Error logging in: ${errorData.message || response.statusText}`);
@@ -70,7 +90,7 @@ const Login = () => {
         <div className="login-page">
             <header className="top-header">
                 <div className="promo-message">
-                    Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="#">ShopNow</a>
+                    {navbarPromoMsg} <a href="#">ShopNow</a>
                 </div>
                 <div className="top-header-right">
                     <select className="language-select">
@@ -81,13 +101,14 @@ const Login = () => {
             </header>
             <nav className="navbar">
                 <div className="navbar-container">
-                    <div className="navbar-logo">DealDone</div>
+                    <div className="navbar-logo">{navbarLogo}</div>
                     <ul className="navbar-menu">
-                    <li><Link to="/Home" className="sign-up-link">Home</Link></li> 
-                        <li>Contact</li>
-                        <li>About</li>
-                        <li><Link to="/signup" className="sign-up-link">Sign up</Link></li> {/* Add a class for styling */}
-                        </ul>
+                        {navbarLinks.map((link, index) => (
+                            <li key={index}>
+                                <Link to={link.url}>{link.label}</Link>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </nav>
             <div className="banner">
@@ -104,26 +125,26 @@ const Login = () => {
                         />
                         {errors.emailOrPhone && <p className="error-message">{errors.emailOrPhone}</p>}
                         <div className="password-container" style={{ position: 'relative' }}>
-                        <input 
-                            type={showPassword ? 'text' : 'password'} 
-                            placeholder="Password" 
-                            value={password} 
-                            onChange={(e) => setPassword(e.target.value)} 
-                            style={{ paddingRight: '30px' }}  // Add padding for the eye icon
-                        />
-                        <span 
-                            onClick={togglePasswordVisibility}
-                            style={{
-                                position: 'absolute',
-                                right: '10px',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                cursor: 'pointer',
-                                color:'black' // Optional: Change color to match your design
-                            }}
-                        >
-                            {showPassword ? <FaEye /> : <FaEyeSlash />}  {/* Correct icon usage */}
-                        </span>
+                            <input 
+                                type={showPassword ? 'text' : 'password'} 
+                                placeholder="Password" 
+                                value={password} 
+                                onChange={(e) => setPassword(e.target.value)} 
+                                style={{ paddingRight: '30px' }} 
+                            />
+                            <span 
+                                onClick={togglePasswordVisibility}
+                                style={{
+                                    position: 'absolute',
+                                    right: '10px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    cursor: 'pointer',
+                                    color: 'black'
+                                }}
+                            >
+                                {showPassword ? <FaEye /> : <FaEyeSlash />}
+                            </span>
                         </div>
                         {errors.password && <p className="error-message">{errors.password}</p>}
 
@@ -140,59 +161,48 @@ const Login = () => {
                         <div className="footer-section">
                             <address>
                                 <h4>Address</h4>
-                                Sector 12, Akurdi,<br />
-                                Pune, Maharashtra, 33<br />
-                                dealdone@gmail.com<br />
-                                +88015-88888-9999
+                                {footerAddress.addressLine1}<br />
+                                {footerAddress.city}, {footerAddress.state}, {footerAddress.zip}<br />
+                                {footerAddress.email}<br />
+                                {footerAddress.phone}
                             </address>
                         </div>
                         <div className="footer-section">
                             <h4>Account</h4>
                             <ul>
-                                <li>My Account</li>
-                                <li>Login / Register</li>
-                                <li>Cart</li>
-                                <li>Wishlist</li>
-                                <li>Shop</li>
+                                {footerAccountLinks.map((link, index) => (
+                                    <li key={index}>
+                                        <Link to={link.url}>{link.label}</Link>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                         <div className="footer-section">
                             <h4>Let us help you</h4>
                             <ul>
-                                <li>Privacy Policy</li>
-                                <li>Terms Of Use</li>
-                                <li>FAQ</li>
-                                <li>Contact</li>
-                                <li>Help</li>
+                                {footerHelpLinks.map((link, index) => (
+                                    <li key={index}>
+                                        <Link to={link.url}>{link.label}</Link>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
                     <div className="footer-bottom">
-                        <div className="footer-social">
-                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-                                <FaFacebook size={15} />
-                            </a>
-                            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-                                <FaTwitter size={15} />
-                            </a>
-                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                                <FaInstagram size={15} />
-                            </a>
-                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-                                <FaLinkedin size={15} />
-                            </a>
+                        <div className="social-icons">
+                            <FaFacebook />
+                            <FaTwitter />
+                            <FaInstagram />
+                            <FaLinkedin />
                         </div>
-                        <div className="footer-copyright-container">
-                            <RiCopyrightLine size={10} color="#555" />
-                            <h6 className="footer-copyright">
-                                Copyright DealDone 2024. All right reserved
-                            </h6>
+                        <div className="copyright">
+                            <RiCopyrightLine /> 2023 DealDone. All Rights Reserved.
                         </div>
                     </div>
                 </div>
             </footer>
         </div>
     );
-}
+};
 
 export default Login;

@@ -75,7 +75,7 @@ const Login = () => {
         }
     };
     return (
-        <div className="login-page">
+        <div className="seller-page login-page">
             <Header />
             <div className="banner">
                 <img src={Yourstore} alt="Your store" />
@@ -120,7 +120,7 @@ const Login = () => {
                         <button type="button" className="forgot-password-btn">Forgot Password?</button>
                         <button type="submit" className="login-btn">Log In</button>
                     </form>
-                    <p>Don't have an account? <Link to="/signup" className='sign-up'>Create account</Link></p>
+                    <p>Don't have an account? <Link to="/seller/signup" className='sign-up'>Create account</Link></p>
                 </div>
             </div>
             <Footer />

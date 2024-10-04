@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import search from '../Assets/images/search.png';
 import wishlist from '../Assets/images/heart.png';
 import cart from '../Assets/images/cart.png';
+
 const Navbar = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 const toggleDropdown = () => {
@@ -10,7 +11,7 @@ const toggleDropdown = () => {
 };
 
   return (
-          <nav className="navbar">
+          <nav className="buyer-navbar">
                 <div className="navbar-container">
                     <div className="navbar-logo">DealDone</div>
                     <ul className="navbar-menu">
@@ -22,7 +23,7 @@ const toggleDropdown = () => {
                             {dropdownOpen && (
                                 <div className="dropdown-menu">
                                     <Link to="/login" className="dropdown-item">Buyer</Link>
-                                    <Link to="/Seller" className="dropdown-item">Seller</Link>
+                                    <Link to="/Seller/signup" className="dropdown-item">Seller</Link>
                                 </div>
                             )}
                         </li>
