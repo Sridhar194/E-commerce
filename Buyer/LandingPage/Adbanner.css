@@ -1,0 +1,13 @@
+.ad-banner {
+    padding: 20px;
+    text-align: center;
+    background-color: #f4f4f4; /* Optional: Add a background color */
+    margin-top: 20px; /* Add some spacing above the banner */
+}
+
+.ad-banner img {
+    width: 100%; /* Make the ad banner responsive */
+    height: auto;
+    max-width: 1200px; /* Optional: Set a max-width for the banner */
+    margin: 0 auto; /* Center the banner */
+}

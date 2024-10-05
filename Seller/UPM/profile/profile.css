@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-section {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  margin-top: 50px;
+}
+
+.profile-image {
+  width: 210px;
+  height: 210px;
+  margin-top: 80px;
+}
+
+.personal-details {
+  flex: 1;
+  margin-left: 200px;
+  margin-top: 19px;
+}
+.business-content{
+  flex-direction: column;
+}
+
+
+.section {
+  margin-bottom: 60px;
+  display: flex;
+  align-content: center;
+  gap: 300px;
+  padding: 0 2rem;
+  margin-top: 82px;
+}
+
+h2 {
+  font-size: 38px;
+  margin-bottom: 15px;
+}
+
+.field {
+  margin-bottom: 10px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: x-large;
+}
+
+.personal-input {
+  font-size: 1rem;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 90%;
+  outline: none;
+}
+.business-input{
+  font-size: 1rem;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 150%;
+  outline: none;
+}
+.tax-input{
+  font-size: 1rem;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 210%;
+  outline: none;
+}
+.store-input{
+  font-size: 1rem;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 171%;
+  outline: none;
+}
+.bank-input{
+  font-size: 1rem;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 171%;
+  outline: none;
+}
+.business-logo {
+  width: 150px;
+  height: 150px;
+  margin-left: 900px;
+  margin-bottom: 8px;
+}
+.confirm-button{
+  height: auto;
+  width: 190px;
+  margin-left: 30px;
+
+}
+/* Error message styling */
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Error input field styling */
+.error-input {
+  border: 2px solid red;
+  background-color: #ffe6e6;
+}
+
+/* Add some margin between error input and the next element */
+.field {
+  margin-bottom: 20px;
+}

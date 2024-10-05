@@ -1,0 +1,94 @@
+/* Sidebar and header styling */
+.header {
+  height: 60px;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.hamburger-icon {
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 250;
+  margin-right: 35px;
+}
+
+.sidebar {
+  width: 0; /* Hidden by default */
+  background-color: #000;
+  color: #fff;
+  height: 550px;
+  transition: width 0.3s;
+  position: fixed;
+  top: 0;
+  right: 0; /* Positioned on the right */
+  padding-top: 20px;
+  z-index: 100;
+}
+
+.sidebar.open {
+  width: 250px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.sidebar-content {
+  margin-top: 50px;
+}
+
+.sidebar-icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sidebar-opt {
+  font-size: 17px;
+}
+
+/* Dropdown styling */
+.dropdown-li {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: min-content;
+  z-index: 1;
+  top: 40px; /* Adjust position based on your design */
+  left: 50px; /* Adjust position based on your design */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content .add-product {
+  width: 160px;
+  border: none;
+  height: 30px;
+}
+
+.dropdown-li:hover .dropdown-content {
+  display: block;
+}
+
+.sidebar li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #9484da;
+  transform: translateY(-7px) scale(1.1);
+  padding-right: 10px;
+}
