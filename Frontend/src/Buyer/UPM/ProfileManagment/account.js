@@ -6,31 +6,39 @@ import Footer from '../../LandingPage/footer.js';
 import axios from 'axios'; // Assuming axios is used for API calls
 
 const AccountPage = () => {
+    
     const [userData, setUserData] = useState({
-        firstName: '',
-        lastName: '',
+        name: '', 
+        phone: '', 
         email: '',
         address: '',
-        password: '', // Password should be handled carefully
     });
-
-    
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-        // Fetch user data from the backend when the component mounts
-        axios.get('/api/user/profile')
-            .then(response => {
-                // Update the state with the fetched data
-                setUserData({
-                    firstName: response.data.firstName,
-                    lastName: response.data.lastName,
-                    email: response.data.email,
-                    address: response.data.address,
-                    password: '', // Do not pre-fill the password for security reasons
+        const fetchUserData = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/buyer/profile', {
+                    withCredentials: true, // Ensure cookies are sent with the request
                 });
-            })
-            .catch(error => {
-                console.error('Error fetching user data:', error);
-            });
+                console.log('Fetched user data:', response.data);
+                setUserData({
+                    name: response.data.user.name, // Update based on API response structure
+                    phone: response.data.user.phone,
+                    email: response.data.user.email,
+                    address: response.data.user.address,
+                });
+                setIsLoading(false); // Stop loading once data is fetched
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    console.error('Unauthorized access. Please log in.');
+                    alert('Unauthorized access. Please log in.');
+                } else {
+                    console.error('Error fetching user data:', error.message);
+                }
+            }
+        };
+
+        fetchUserData();
     }, []);
 
     const handleInputChange = (e) => {
@@ -38,23 +46,36 @@ const AccountPage = () => {
         setUserData({ ...userData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Send updated data to the backend
-        axios.post('/api/user/update-profile', userData)
-            .then(response => {
-                console.log('Profile updated successfully');
-            })
-            .catch(error => {
-                console.error('Error updating profile:', error);
+        try {
+            const response = await fetch('http://localhost:5000/buyer/profile', {
+                method: 'PUT', // changed from POST to PUT
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include', // Ensure cookies are sent with the request
+                body: JSON.stringify(userData),
             });
+            if (response.ok) {
+                const data = await response.json(); // Parse the response
+                console.log('Profile updated successfully:', data.message);
+                alert(data.message); 
+                console.log('Profile updated successfully');
+            } else {
+                const errorData = await response.json();
+                console.error('Error updating profile:', errorData.message || response.statusText);
+                alert(`Error: ${errorData.message || response.statusText}`);
+            }
+        } catch (error) {
+            console.error('Error updating profile:', error);
+        }
     };
-
+    
     return (
         <div className="account-page">
             <Header />
-            <Homenav/>
-
+            <Homenav />
 
             <div className="content-wrapper">
                 <div className="sidebar">
@@ -89,17 +110,18 @@ const AccountPage = () => {
                                 <label>First Name</label>
                                 <input
                                     type="text"
-                                    name="firstName"
-                                    value={userData.firstName}
+                                    name="name"
+                                    value={userData.name}
                                     onChange={handleInputChange}
+
                                 />
                             </div>
                             <div className="form-group">
-                                <label>Last Name</label>
+                                <label>Phone</label>
                                 <input
                                     type="text"
-                                    name="lastName"
-                                    value={userData.lastName}
+                                    name="phone"
+                                    value={userData.phone}
                                     onChange={handleInputChange}
                                 />
                             </div>
@@ -124,7 +146,7 @@ const AccountPage = () => {
                                 />
                             </div>
                         </div>
-                      
+                        
                         <div className="form-actions">
                             <button type="button" className="cancel-button">Cancel</button>
                             <button type="submit" className="save-button">Save Changes</button>

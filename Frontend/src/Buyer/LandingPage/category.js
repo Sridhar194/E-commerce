@@ -3,17 +3,17 @@ import './category.css';
 
 // Import local images
 import phonesIcon from '../Assets/images/smartphone.png';
-import computersIcon from '../Assets/images/monitor.png';
-import smartwatchIcon from '../Assets/images/smartwatch.png';
-import cameraIcon from '../Assets/images/camera.png'; 
+import shoeIcon from '../Assets/images/shoes.png';
+import chefIcon from '../Assets/images/chef.png';
+import fashionIcon from '../Assets/images/fashion.png'; 
 import headphonesIcon from '../Assets/images/headphones.png';
 import gamingIcon from '../Assets/images/gaming.png';
 
 const categories = [
   { id: 1, name: 'Phones', iconUrl: phonesIcon },
-  { id: 2, name: 'Computers', iconUrl: computersIcon },
-  { id: 3, name: 'SmartWatch', iconUrl: smartwatchIcon },
-  { id: 4, name: 'Camera', iconUrl: cameraIcon },
+  { id: 2, name: 'Shoes', iconUrl: shoeIcon },
+  { id: 3, name: 'Kitchen', iconUrl: chefIcon },
+  { id: 4, name: 'Fashion', iconUrl: fashionIcon },
   { id: 5, name: 'Headphones', iconUrl: headphonesIcon },
   { id: 6, name: 'Gaming', iconUrl: gamingIcon },
 ];

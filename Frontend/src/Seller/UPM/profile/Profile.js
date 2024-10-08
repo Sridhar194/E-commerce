@@ -6,6 +6,9 @@ import Header from './Header';
 import axios from 'axios';
 
 function Profile() {
+  const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})(\/[\w .-]*)*\/?$/;
+  const gstRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+    
   const [personalDetails, setPersonalDetails] = useState({
     name: '',
     phone: '',
@@ -36,8 +39,10 @@ function Profile() {
     IfscCode: '',
   });
 
-  const [image, setImage] = useState(null);
-  const hiddenFileInput = useRef(null);
+  const [profileImage, setProfileImage] = useState(null);
+  const [logoImage, setLogoImage] = useState(null);  const hiddenFileInput = useRef(null);
+  const hiddenProfileInput = useRef(null);
+  const hiddenLogoInput = useRef(null);
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -45,7 +50,7 @@ function Profile() {
   useEffect(() => {
     const fetchSellerData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/seller/profile', {
+        const response = await axios.get('http://localhost:5001/api/seller/profile', {
           withCredentials: true, // Ensure cookies are sent with the request
         });
         const data = response.data.user;
@@ -113,29 +118,52 @@ function Profile() {
   const validateForm = () => {
     const errors = {};
     if (!businessDetails.CompanyName) errors.CompanyName = 'Company Name is required';
-    if (!businessDetails.BusinessType) errors.BusinessType = 'Business Type is required';
-    if (!businessDetails.BusinessAddress) errors.BusinessAddress = 'Business Address is required';
-    if (!taxDetails.State) errors.State = 'State is required';
-    if (!taxDetails.TaxImposed) errors.TaxImposed = 'Tax Imposed is required';
-    if (!taxDetails.GST) errors.GST = 'GST is required';
-    if (!storeDetails.StoreAddress) errors.StoreAddress = 'Store Address is required';
-    if (!bankDetails.AccountType) errors.AccountType = 'Account Type is required';
-    if (!bankDetails.AccountHolderName) errors.AccountHolderName = 'Account Holder Name is required';
-    if (!bankDetails.IfscCode) errors.IfscCode = 'IFSC Code is required';
+  if (!businessDetails.BusinessType) errors.BusinessType = 'Business Type is required';
+  if (!businessDetails.BusinessAddress) errors.BusinessAddress = 'Business Address is required';
+
+  // Conditional validation for Website URL
+  if (businessDetails.WebsiteUrl && !urlRegex.test(businessDetails.WebsiteUrl)) {
+    errors.WebsiteUrl = 'Please enter a valid website URL';
+  }
+
+  // Tax details validation
+  if (!taxDetails.State) errors.State = 'State is required';
+  if (!taxDetails.TaxImposed) errors.TaxImposed = 'Tax Imposed is required';
+
+  // Conditional validation for GST
+  if (taxDetails.GST && !gstRegex.test(taxDetails.GST)) {
+    errors.GST = 'Please enter a valid GST number';
+  }
+
+  // Store and bank details validation
+  if (!storeDetails.StoreAddress) errors.StoreAddress = 'Store Address is required';
+  if (!bankDetails.AccountType) errors.AccountType = 'Account Type is required';
+  if (!bankDetails.AccountHolderName) errors.AccountHolderName = 'Account Holder Name is required';
+  if (!bankDetails.IfscCode) errors.IfscCode = 'IFSC Code is required';
 
     return errors;
   };
+ // Handle file input change for profile image upload
+ const handleProfileFileInputChange = (event) => {
+  const file = event.target.files[0];
+  setProfileImage(file);
+};
 
-  // Handle file input change for image upload
-  const handleFileInputChange = (event) => {
-    const file = event.target.files[0];
-    setImage(file);
-  };
+// Handle file input change for logo upload
+const handleLogoFileInputChange = (event) => {
+  const file = event.target.files[0];
+  setLogoImage(file);
+};
 
-  // Trigger file input on image click
-  const handleImageClick = () => {
-    hiddenFileInput.current.click();
-  };
+// Trigger file input for profile image on click
+const handleProfileImageClick = () => {
+  hiddenProfileInput.current.click();
+};
+
+// Trigger file input for logo on click
+const handleLogoImageClick = () => {
+  hiddenLogoInput.current.click();
+};
 
   // Handle form submission
   const handleConfirmClick = async () => {
@@ -158,12 +186,18 @@ function Profile() {
       formData.append("AccountHolderName", bankDetails.AccountHolderName);
       formData.append("IfscCode", bankDetails.IfscCode);
 
-      if (image) {
-        formData.append("file", image);
-      }
+     // Append profile image if uploaded
+     if (profileImage) {
+      formData.append("profileImage", profileImage);
+    }
+    
+    // Append logo image if uploaded
+    if (logoImage) {
+      formData.append("logoImage", logoImage);
+    }
 
       try {
-        const response = await fetch("http://localhost:5000/api/seller/profile", {
+        const response = await fetch("http://localhost:5000/seller/profile", {
             method: 'PUT',
             credentials: 'include', // Ensure cookies are sent with the request
             body: formData
@@ -193,18 +227,17 @@ function Profile() {
         <div className="profile-section">
           <div className="box-decoration">
             <h1 className="img-heading">Add photo</h1>
-            <div onClick={handleImageClick} style={{ cursor: "pointer" }}>
-              {image ? (
-                <img src={URL.createObjectURL(image)} alt="upload image" className="img-display-after" />
+            <div onClick={handleProfileImageClick} style={{ cursor: "pointer" }}>
+              {profileImage ? (
+                <img src={URL.createObjectURL(profileImage)} alt="Profile" className="img-display-after" />
               ) : (
-                <img src={photo} alt="upload image" className="img-display-before" />
+                <img src={photo} alt="Upload" className="img-display-before" />
               )}
 
               <input
-                id="image-upload-input"
                 type="file"
-                onChange={handleFileInputChange}
-                ref={hiddenFileInput}
+                onChange={handleProfileFileInputChange}
+                ref={hiddenProfileInput}
                 style={{ display: "none" }}
               />
             </div>
@@ -226,8 +259,8 @@ function Profile() {
           </div>
         </div>
 
-        <div className="section">
-          <div className='busniess-content'>
+        <div className="section1">
+          <div className='busniess-content1'>
             <h2>Business details</h2>
             {['CompanyName', 'WebsiteUrl', 'BusinessType', 'BusinessAddress'].map((field, index) => (
               <div className="field" key={index}>
@@ -244,25 +277,23 @@ function Profile() {
           </div>
           <div className="box-decoration">
             <h1 className="img-heading">Add Logo</h1>
-            <div onClick={handleImageClick} style={{ cursor: "pointer" }}>
-              {image ? (
-                <img src={URL.createObjectURL(image)} alt="upload image" className="img-display-after" />
+            <div onClick={handleLogoImageClick} style={{ cursor: "pointer" }}>
+              {logoImage ? (
+                <img src={URL.createObjectURL(logoImage)} alt="Logo" className="img-display-after" />
               ) : (
-                <img src={photo} alt="upload image" className="img-display-before" />
+                <img src={photo} alt="Upload" className="img-display-before" />
               )}
-
               <input
-                id="image-upload-input"
                 type="file"
-                onChange={handleFileInputChange}
-                ref={hiddenFileInput}
+                onChange={handleLogoFileInputChange}
+                ref={hiddenLogoInput}
                 style={{ display: "none" }}
               />
             </div>
           </div>
         </div>
 
-        <div className="section">
+        <div className="section2">
           <div className='busniess-content'>
             <h2>Tax details</h2>
             {['State', 'TaxImposed', 'GST'].map((field, index) => (
@@ -280,7 +311,7 @@ function Profile() {
           </div>
         </div>
 
-        <div className="section">
+        <div className="section2">
           <div className='busniess-content'>
             <h2>Store Address</h2>
             <div className="field">
@@ -296,7 +327,7 @@ function Profile() {
           </div>
         </div>
 
-        <div className="section">
+        <div className="section2">
           <div className='busniess-content'>
             <h2>Bank details</h2>
             {['AccountType', 'AccountHolderName', 'IfscCode'].map((field, index) => (
@@ -320,5 +351,8 @@ function Profile() {
 }
 
 export default Profile;  
+
+  
+
 
   

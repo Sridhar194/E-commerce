@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import './login.css'; 
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -51,37 +51,56 @@ const Login = () => {
 
         try {
             console.log('Logging in with:', { emailOrPhone, password }); // Log the login attempt
-            const response = await fetch('http://10.30.72.194:5000/api/seller/login', {
-                method: 'POST', // Ensure method is POST
+            const response = await fetch('http://localhost:5000/seller/login', {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include', // This is important for including cookies
                 body: JSON.stringify({ emailOrPhone, password }),
             });
-            
-            console.log('Response:', response); // Log the response
             
             if (response.ok) {
                 alert('Logged in successfully');
                 navigate('/home');
-                // Handle successful login (e.g., redirect or save user info)
             } else {
                 const errorData = await response.json();
-                alert(`Error logging in: ${errorData.message || response.statusText}`);
-            }
+                if (errorData.message === 'Incorrect password') {
+                    setErrors({ password: 'Incorrect password, please try again.' });
+                } else {
+                    setErrors({ general: errorData.message || 'Login failed. Please try again.' });
+                }        
+                }
         } catch (error) {
-            console.error('Fetch error:', error); // Log any fetch errors
+            console.error('Fetch error:', error);
             alert('An error occurred while logging in. Please try again later.');
         }
     };
+    const[loginHeading,setloginHeading]=useState([]);
+    useEffect(() => {
+        // Fetch the JSON file from the public folder
+        fetch('/locals/propertyFile.json')
+          .then(response => response.json())
+          .then(data => {
+            // Update the state with navbar items from the JSON
+            setloginHeading(data.loginHeading);
+          })
+          .catch(error => console.error('Error fetching navbar items:', error));
+      }, []);
     return (
         <div className="login-page">
             <Header />
             <div className="banner">
                 <img src={Yourstore} alt="Your store" />
                 <div className="login-form-container">
-                    <h2 className='heading'>Log in</h2>
-                    <p className='heading-1'>Enter your credentials below</p>
+                {loginHeading.length > 0 ? ( // Check if signupHeading has items
+                        <>
+                            <h2 className='heading'>{loginHeading[0].heading1}</h2>
+                            <p className='heading-1'>{loginHeading[0].heading2}</p>
+                        </>
+                    ) : (
+                        <p>Loading...</p> // Optional loading state
+                    )}
                     <form className="login-form" onSubmit={handleLogin}>
                         {errors.general && <p className="error-message">{errors.general}</p>}
                         

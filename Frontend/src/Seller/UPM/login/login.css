@@ -5,6 +5,11 @@
   body {
     overflow-x: hidden;
   }
+
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-reveal {
+    display: none;
+}
   
   .top-header {
     display: flex;

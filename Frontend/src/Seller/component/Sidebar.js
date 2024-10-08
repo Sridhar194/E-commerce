@@ -38,19 +38,19 @@ const Sidebar = () => {
       <div className="header">
         <GiHamburgerMenu className="hamburger-icon" onClick={toggleSidebar} />
       </div>
-      <div className={`sidebar ${isOpen ? 'open' : ''}`}>
-        <ul className='sidebar-content'>
+      <div className={`Sellersidebar ${isOpen ? 'open' : ''}`}>
+        <ul className='Sellersidebar-content'>
           <li onClick={handleNavigateToHome}>
-            <IoHome className='sidebar-icon' />
-            <span className='sidebar-opt'>Home</span>
+            <IoHome className='Sellersidebar-icon' />
+            <span className='Sellersidebar-opt'>Home</span>
           </li>
           <li>
-            <MdOutlineInventory className='sidebar-icon' />
-            <span className="sidebar-opt">Inventory Management</span>
+            <MdOutlineInventory className='Sellersidebar-icon' />
+            <span className="Sellersidebar-opt">Inventory Management</span>
           </li>
           <li onClick={toggleDropdown} className="dropdown-li">
-            <SlNotebook className='sidebar-icon' />
-            <span className="sidebar-opt">Manage Product <IoMdArrowDropdown /></span>
+            <SlNotebook className='Sellersidebar-icon' />
+            <span className="Sellersidebar-opt">Manage Product <IoMdArrowDropdown /></span>
             {dropdownOpen && (
               <div className="dropdown-content">
                 <button className="add-product" onClick={handleNavigateToProductManage}>+ Add Product</button>
@@ -59,20 +59,20 @@ const Sidebar = () => {
             )}
           </li>
           <li>
-            <LiaShippingFastSolid className='sidebar-icon' />
-            <span className="sidebar-opt">Shipping Settings</span>
+            <LiaShippingFastSolid className='Sellersidebar-icon' />
+            <span className="Sellersidebar-opt">Shipping Settings</span>
           </li>
           <li>
-            <FaBell className='sidebar-icon' />
-            <span className="sidebar-opt">Updates</span>
+            <FaBell className='Sellersidebar-icon' />
+            <span className="Sellersidebar-opt">Updates</span>
           </li>
           <li>
-            <CgPerformance className='sidebar-icon' />
-            <span className="sidebar-opt">Performance</span>
+            <CgPerformance className='Sellersidebar-icon' />
+            <span className="Sellersidebar-opt">Performance</span>
           </li>
           <li>
-            <MdAddCall className='sidebar-icon' />
-            <span className="sidebar-opt">Exclusive Help/Support</span>
+            <MdAddCall className='Sellersidebar-icon' />
+            <span className="Sellersidebar-opt">Exclusive Help/Support</span>
           </li>
         </ul>
       </div>
