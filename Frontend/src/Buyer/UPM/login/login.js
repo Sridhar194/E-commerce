@@ -67,21 +67,25 @@ const Login = () => {
         setErrors({}); // Clear errors if all validations pass
 
         try {
-            const response = await fetch('http://192.168.137.43:5000/api/register', {
+            console.log('Logging in with:', { emailOrPhone, password }); // Log the login attempt
+            const response = await fetch('http://localhost:5000/buyer/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include', // This is important for including cookies
                 body: JSON.stringify({ emailOrPhone, password }),
             });
-
+            
             if (response.ok) {
                 alert('Logged in successfully');
+                
             } else {
                 const errorData = await response.json();
                 alert(`Error logging in: ${errorData.message || response.statusText}`);
             }
         } catch (error) {
+            console.error('Fetch error:', error);
             alert('An error occurred while logging in. Please try again later.');
         }
     };
@@ -100,17 +104,22 @@ const Login = () => {
                 </div>
             </header>
             <nav className="navbar">
-                <div className="navbar-container">
-                    <div className="navbar-logo">{navbarLogo}</div>
-                    <ul className="navbar-menu">
-                        {navbarLinks.map((link, index) => (
-                            <li key={index}>
-                                <Link to={link.url}>{link.label}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </nav>
+  <div className="navbar-container">
+    <div className="navbar-logo">{navbarLogo}</div>
+    <ul className="navbar-menu">
+      {navbarLinks.map((link, index) => (
+        <li key={index}>
+          <Link to={link.url}>{link.label}</Link>
+        </li>
+      ))}
+      {/* Add the "Sign up" link */}
+      <li>
+        <Link to="/signup">Sign up</Link>
+      </li>
+    </ul>
+  </div>
+</nav>
+
             <div className="banner">
                 <img src={shoping} alt="Shopping bags" />
                 <div className="login-form-container">

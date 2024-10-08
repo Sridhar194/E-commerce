@@ -1,0 +1,116 @@
+{
+    "navbar": [
+      { "id": 1, "name": "DealDone" },
+      { "id": 2, "name": "SellerCenter" }
+    ],
+    "navbarPromoMsg":"Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! Shop Now",
+    "navbarLogo": "DealDone",
+    "navbarLinks": [
+      {
+        "label": "Home",
+        "url": "/home"
+      },
+      {
+        "label": "Contact",
+        "url": "/contact"
+      },
+      {
+        "label": "About",
+        "url": "/about"
+      },
+      {
+        "label": "Sign In",
+        "url": "/login"
+      }
+    ],
+  
+    "footerAddress":[
+      { 
+        "label":"Address",
+        "url":"Sector 12, Akurdi,Pune, Maharashtra 33 dealdone@gmail.com +880"
+      }],
+  
+    "footerAccount":[
+        {
+          "label":"Account"
+        },
+        {
+          "label":"My Account",
+          "url":"/myAccount"
+        },
+        {
+          "label":"Login",
+          "url":"/login"
+        },
+        {
+          "label":"Sign In",
+          "url":"/signup"
+        },
+        {
+          "label":"Cart",
+          "url":"/cart"
+        },
+        {
+          "label":"Wishlist",
+          "url":"/Wishlist"
+        },
+        {
+          "label":"Shop",
+          "url":"/shop"
+        }
+      ],
+      "footerHelp":[
+        {
+          "label":"Let Us Help You"
+        },
+        {
+          "label":"Privacy Policy",
+          "url":"/privacyPolicy"
+        },
+        {
+          "label":"Terms Of Use",
+          "url":"/termsOfUse"
+        },
+        {
+          "label":"FAQ",
+          "url":"/FAQ"
+        },
+        {
+          "label":"Contact",
+          "url":"/contact"
+        },
+        {
+          "label":"Help",
+          "url":"/help"
+        }
+      ],
+      "footerCopyright":"Copyright DealDone 2024. All rights reserved",
+    "signupHeading":[
+      {
+        "heading1":"Create an account",
+        "heading2":"Enter your details below"
+      }
+    ],
+    "signuploginHeading":[
+      {
+        "label":"Already have an account? "
+      },
+      {
+        "label":"log in",
+        "url":"/login"
+      }
+    ],
+    "leftHeading":"Grow Your business online on Deal Done and become an identified Seller",
+    "sellingBtn":"Start Selling",
+    "whySell":"Why Sell on DealDone?",
+    "profileHeading":"Profile",
+    "loginHeading":[
+      {
+        "heading1":"Log in",
+        "heading2":"Enter your credentials below"
+      }
+    ],
+    "productHeading":"Product Management",
+    "addProduct":"Add Products +"
+  }
+  

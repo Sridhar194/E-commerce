@@ -25,7 +25,7 @@ const Signup = () => {
     const [alreadyAccountText, setAlreadyAccountText] = useState('');
     const [loginText, setLoginText] = useState('');
     const [navbarLogo, setNavbarLogo] = useState('');
-    const [navbarLinkssignup, setNavbarLinks] = useState([]);
+    const [navbarLinks, setNavbarLinks] = useState([]);
     const [footerAddress, setFooterAddress] = useState({});
     const [footerAccountLinks, setFooterAccountLinks] = useState([]);
     const [footerHelpLinks, setFooterHelpLinks] = useState([]);
@@ -53,11 +53,96 @@ const Signup = () => {
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
     const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
 
-    // Validation logic...
+    const validateName = (name) => /^[a-zA-Z\s]+$/.test(name);
+    const validateEmail = (email) => /^[^\s@]+@(gmail\.com|yahoo\.com|myyahoo\.com|edu\.in|gmail\.in|outlook\.com)$/.test(email);
+    const validatePhone = (phone) => /^\d{10}$/.test(phone);
+    const validatePassword = (password) => {
+        const errors = [];
+        
+        if (password.length < 8 ||
+            !/[A-Z]/.test(password) ||
+            !/[a-z]/.test(password) ||
+            !/\d/.test(password) ||
+            !/[@$!%*?&#]/.test(password)) {
+            
+            errors.push("Password must be strong.");
+        }
+        
+        return errors;
+    };
+
 
     const handleCreateAccount = async (event) => {
         event.preventDefault();
-        // Validation and API call logic...
+        
+        let validationErrors = {};
+
+        if (!name) {
+            validationErrors.name = 'Name is required';
+        } else if (!validateName(name)) {
+            validationErrors.name = 'Name should contain only letters and spaces';
+        }
+
+        if (!email ) {
+            validationErrors.email  = 'Email is required';
+        } else if (!validateEmail(email )) {
+            validationErrors.email  = 'Please enter a valid email address';
+        }
+
+        if (!phone) {
+            validationErrors.phone = 'Phone number is required';
+        } else if (!validatePhone(phone)) {
+            validationErrors.phone = 'Phone number should be exactly 10 digits';
+        }
+
+        if (!password) {
+            validationErrors.password = 'Please enter the password.';
+        } else {
+            const passwordErrors = validatePassword(password);
+            if (passwordErrors.length > 0) {
+                validationErrors.password = passwordErrors.join(' ');
+            }
+        }
+
+        if (password !== confirmPassword) {
+            validationErrors.confirmPassword = 'Passwords do not match';
+        }
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        setErrors({}); // Clear errors if all validations pass
+
+        try {
+            const response = await fetch('http://localhost:5000/buyer/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email , phone, password }),
+            });
+                    
+            if (response.ok) {
+                alert('Account created successfully');
+                // Clear form fields
+                setName('');
+                setEmail('');
+                setPhone('');
+                setPassword('');
+                setConfirmPassword('');
+            } else {
+                const errorData = await response.json();
+                alert(`Error creating account: ${errorData.message || response.statusText}`);
+            }
+        } catch (error) {
+            alert('An error occurred while creating the account. Please try again later.');
+        }
+    };
+
+    const handleGoogleSignup = async () => {
+        alert('Google signup clicked');
     };
 
     return (
@@ -74,17 +159,22 @@ const Signup = () => {
                 </div>
             </header>
             <nav className="navbar">
-                <div className="navbar-container">
-                    <div className="navbar-logo">{navbarLogo}</div>
-                    <ul className="navbar-menu">
-                        {navbarLinkssignup.map((link, index) => (
-                            <li key={index}>
-                                <Link to={link.url}>{link.label}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </nav>
+  <div className="navbar-container">
+    <div className="navbar-logo">{navbarLogo}</div>
+    <ul className="navbar-menu">
+      {navbarLinks.map((link, index) => (
+        <li key={index}>
+          <Link to={link.url}>{link.label}</Link>
+        </li>
+      ))}
+      {/* Add the "Sign in" link */}
+      <li>
+        <Link to="/login">Sign in</Link>
+      </li>
+    </ul>
+  </div>
+</nav>
+
             <div className="banner">
                 <img src={shoping} alt="Shopping bags" />
                 <div className="signup-form-container">
@@ -122,8 +212,19 @@ const Signup = () => {
                                 value={password} 
                                 onChange={(e) => setPassword(e.target.value)} 
                             />
-                            <span>
+                               <span 
+                                onClick={togglePasswordVisibility}
+                                style={{
+                                    position: 'absolute',
+                                    right: '10px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    cursor: 'pointer',
+                                    color: 'black'
+                                }}
+                            >
                                 {showPassword ? <FaEye /> : <FaEyeSlash />}
+                        
                             </span>
                         </div>
                         {errors.password && <p className="error-message">{errors.password}</p>}
@@ -135,8 +236,19 @@ const Signup = () => {
                                 value={confirmPassword} 
                                 onChange={(e) => setConfirmPassword(e.target.value)} 
                             />
-                            <span>
-                                {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+                            <span 
+                                onClick={toggleConfirmPasswordVisibility}
+                                style={{
+                                    position: 'absolute',
+                                    right: '10px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    cursor: 'pointer',
+                                    color: 'black'
+                                }}
+                            >
+                                {showPassword ? <FaEye /> : <FaEyeSlash />}
+                        
                             </span>
                         </div>
                         {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}

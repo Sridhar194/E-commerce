@@ -4,8 +4,7 @@
     "navbarLinks": [
       { "label": "Home", "url": "/Home" },
       { "label": "Contact", "url": "/contact" },
-      { "label": "About", "url": "/about" },
-      { "label": "Sign up", "url": "/signup" }
+      { "label": "About", "url": "/about" }
     ],
       
   
@@ -65,25 +64,7 @@
         "alreadyAccountText": "Already have an account?",
         "loginText": "Log in"
     },
-    "navbarLogo": "DealDone",
-    "navbarLinks": [
-        {
-            "label": "Home",
-            "url": "/Home"
-        },
-        {
-            "label": "Contact",
-            "url": "/contact"
-        },
-        {
-            "label": "About",
-            "url": "/about"
-        },
-        {
-            "label": "Sign in",
-            "url": "/login"
-        }
-    ],
+    
     "footerAddress": {
         "addressLine1": "Sector 12, Akurdi",
         "city": "Pune",
@@ -135,5 +116,133 @@
             "label": "Help",
             "url": "/help"
         }
-    ]
-}
+    ],
+
+
+    "sidebarMenu": [
+      {
+        "label": "Women's Fashion"
+      },
+      {
+        "label": "Men's Fashion"
+      },
+      {
+        "label": "Electronics"
+      },
+      {
+        "label": "Home & Lifestyle"
+      },
+      {
+        "label": "Medicine"
+      },
+      {
+        "label": "Sports & Outdoor"
+      },
+      {
+        "label": "Baby's & Toys"
+      },
+      {
+        "label": "Groceries & Pets"
+      },
+      {
+        "label": "Health & Beauty"
+      }
+    ],
+  
+
+  
+    "navbar": {
+      "logo": "DealDone",
+      "menuItems": [
+        {
+          "label": "Home",
+          "path": "/"
+        },
+        {
+          "label": "Contact",
+          "path": "/contact"
+        },
+        {
+          "label": "About",
+          "path": "/about"
+        },
+        {
+          "label": "Sign In",
+          "dropdownItems": [
+            {
+              "label": "Buyer",
+              "path": "/login"
+            },
+            {
+              "label": "Seller",
+              "path": "/Seller/signup"
+            }
+          ]
+        }
+      ],
+      "searchPlaceholder": "What are you looking for?",
+      "searchButtonAlt": "search",
+      "wishlistButtonAlt": "wishlist",
+      "cartButtonAlt": "cart"
+    },
+
+  
+    "footer": {
+      "address": {
+        "title": "Address",
+        "details": [
+          "Sector 12, Akurdi,",
+          "Pune, Maharashtra, 33",
+          "dealdone@gmail.com",
+          "+88015-88888-9999"
+        ]
+      },
+      "account": {
+        "title": "Account",
+        "links": [
+          "My Account",
+          "Login / Register",
+          "Cart",
+          "Wishlist",
+          "Shop"
+        ]
+      },
+      "help": {
+        "title": "Let us help you",
+        "links": [
+          "Privacy Policy",
+          "Terms Of Use",
+          "FAQ",
+          "Contact",
+          "Help"
+        ]
+      },
+      "socialLinks": {
+        "facebook": "https://www.facebook.com",
+        "twitter": "https://www.twitter.com",
+        "instagram": "https://www.instagram.com",
+        "linkedin": "https://www.linkedin.com"
+      },
+      "copyright": {
+        "text": "Copyright DealDone 2024. All rights reserved",
+        "icon": "RiCopyrightLine"
+      },
+
+    "navbarLogo": "DealDone",
+    "navbarLinks": [
+      { "label": "Home", "url": "/" },
+      { "label": "Contact", "url": "/contact" },
+      { "label": "About", "url": "/about" }
+    ],
+    "navbar": {
+      "searchPlaceholder": "What are you looking for?",
+      "searchButtonAlt": "search",
+      "wishlistButtonAlt": "wishlist",
+      "cartButtonAlt": "cart"
+    }
+    }
+  }    
+  
+  
+  
+  
