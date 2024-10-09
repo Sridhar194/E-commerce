@@ -1,0 +1,253 @@
+/* General button styling */
+.Button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  text-decoration: none; /* Remove underline from links */
+  text-align: center;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Top header styling */
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  padding: 5px 20px; /* Increased padding for better spacing */
+  font-size: 14px;
+}
+
+/* Navbar container */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px; /* Increased padding for consistency */
+}
+
+/* Navbar styling */
+.navbar {
+  background-color: white;
+  padding: 10px;
+  border-bottom: 1px solid #000;
+}
+
+/* Logo styling */
+.navbar-logo {
+  font-size: 32px;
+  font-weight: bold;
+  padding-left: 50px; /* Reduced padding for better alignment */
+}
+
+/* Individual navbar item styling */
+.navbar-menu li {
+  cursor: pointer;
+  align-items: center;
+  margin: 0; /* Adjusted margins for spacing */
+  list-style: none; /* Remove bullet points */
+}
+
+/* Navbar right section */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  margin-right: 50px; /* Reduced margin for better alignment */
+}
+
+/* Search container */
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  width: 300px;
+}
+
+.search-container:focus-within {
+  border-color: #000; /* Change border color on focus */
+}
+
+/* Search input styling */
+.search-input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 5px;
+}
+
+/* Search button styling */
+.search-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Search icon size */
+.search-button img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon container */
+.icon-container {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+/* Wishlist and Cart Buttons */
+.wishlist-button, .cart-button {
+  background: none;
+  border: none;
+  padding: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Adjusted size for Wishlist and Cart Icons */
+.wishlist-button img, .cart-button img {
+  width: 30px; /* Same size as the search icon */
+  height: 30px;
+}
+
+/* Sign-in dropdown container */
+.sign-in-container {
+  position: relative;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #000;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adjusted shadow for better contrast */
+  border-radius: 4px;
+  z-index: 10;
+  min-width: 150px;
+}
+
+/* Dropdown item styling */
+.dropdown-item {
+  padding: 10px;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+/* Dropdown item hover effect */
+.dropdown-item:hover {
+  background-color: #b10000;
+}
+
+/* Ensure dropdown content appears correctly */
+.dropdown-menu a {
+  padding: 10px;
+  display: block;
+}
+
+/* Dropdown menu link hover effect */
+.dropdown-menu a:hover {
+  background-color: #3e2828;
+}
+
+/* Sidebar and banner container */
+.sidebar-banner-container {
+  display: flex;
+  margin-top: 20px; /* Add some space between navbar and sidebar/banner */
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 250px; /* Adjust width as needed */
+  padding: 20px;
+  background-color: #ffffff;
+  border-right: 1px solid #ddd;
+  position: relative;
+  z-index: 1; /* Ensure sidebar is above other content */
+}
+
+/* Sidebar menu styling */
+.sidebar-menu {
+  list-style-type: none;
+  padding-left: 80px;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  padding: 10px 0;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Sidebar menu item hover effect */
+
+/* Sidebar link styling */
+.sidebar-menu li a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 100%;
+}
+
+/* Banner styling */
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .navbar-logo {
+    padding-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .navbar-menu {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-menu li {
+    margin: 10px 0;
+  }
+
+  .navbar-right {
+    margin-right: 0;
+  }
+
+  .search-container {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .icon-container {
+    margin-right: 0;
+  }
+
+  /* Sidebar and banner in a column layout on small screens */
+  .sidebar-banner-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+}
