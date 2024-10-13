@@ -1,4 +1,4 @@
-import './profile.css';
+import './sellerprofile.css';
 import React, { useState, useEffect, useRef } from 'react';
 import photo from '../../assets/images/photo.png'; // Make sure the path is correct
 import Header from './Header';

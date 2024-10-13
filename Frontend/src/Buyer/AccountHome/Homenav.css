@@ -31,8 +31,6 @@
     z-index: 999;
     width: 100%;
     top: 45px; /* Adjust this based on the height of the top header */
-    
-  
   
 
   }
@@ -72,6 +70,7 @@
     border-radius: 5px;
     padding: 5px;
     width: 300px;
+    padding-right: 300px;
   }
   
   .search-container:focus-within {
