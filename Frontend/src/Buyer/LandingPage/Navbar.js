@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import search from '../Assets/images/search.png';
 import wishlist from '../Assets/images/heart.png';
 import cart from '../Assets/images/cart.png';
+import './Landing.css'
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -16,7 +17,7 @@ const Navbar = () => {
     // Fetch the property file
     fetch('Buyer_property/propertyfile.json')
       .then(response => response.json())
-      .then(data => setNavbarData(data.navbar))
+      .then(data => setNavbarData(data.Landingnavbar))
       .catch(error => console.error('Error fetching property file:', error));
   }, []);
 
@@ -25,10 +26,10 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="buyer-navbar">
-      <div className="navbar-container">
-        <div className="navbar-logo">{navbarData.logo}</div>
-        <ul className="navbar-menu">
+    <nav className="buyer-Landingnavbar">
+      <div className="Landingnavbar-container">
+        <div className="Landingnavbar-logo">{navbarData.logo}</div>
+        <ul className="Landingnavbar-menu">
           {navbarData.menuItems.map((item, index) => (
             <li key={index}>
               {item.dropdownItems ? (
@@ -50,7 +51,7 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div className="navbar-right">
+        <div className="Landingnavbar-right">
           <div className="search-container">
             <input
               type="text"

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './login.css';
 import { Link } from 'react-router-dom';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import { RiCopyrightLine } from 'react-icons/ri';
 import shoping from '../../Assets/images/Shopingimg.png';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
+import Footer from '../../LandingPage/footer';
+import Header from '../../LandingPage/Header';
 const Login = () => {
     const [emailOrPhone, setEmailOrPhone] = useState('');
     const [password, setPassword] = useState('');
@@ -15,10 +14,7 @@ const Login = () => {
     // For fetching data from propertyfile.json
     const [navbarLinks, setNavbarLinks] = useState([]);
     const [navbarLogo, setNavbarLogo] = useState('');
-    const [navbarPromoMsg, setNavbarPromoMsg] = useState('');
-    const [footerAddress, setFooterAddress] = useState({});
-    const [footerAccountLinks, setFooterAccountLinks] = useState([]);
-    const [footerHelpLinks, setFooterHelpLinks] = useState([]);
+    
 
     useEffect(() => {
         fetch('Buyer_Property/propertyfile.json')
@@ -26,10 +22,7 @@ const Login = () => {
             .then(data => {
                 setNavbarLinks(data.navbarLinks);
                 setNavbarLogo(data.navbarLogo);
-                setNavbarPromoMsg(data.navbarPromoMsg);
-                setFooterAddress(data.footerAddress);
-                setFooterAccountLinks(data.footerAccountLinks);
-                setFooterHelpLinks(data.footerHelpLinks);
+                
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
@@ -68,7 +61,7 @@ const Login = () => {
 
         try {
             console.log('Logging in with:', { emailOrPhone, password }); // Log the login attempt
-            const response = await fetch('http://localhost:5000/buyer/login', {
+            const response = await fetch('http://localhost:5000', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -86,23 +79,19 @@ const Login = () => {
             }
         } catch (error) {
             console.error('Fetch error:', error);
-            alert('An error occurred while logging in. Please try again later.');
+            alert('An error occurred while logging in. Please try again later.'); 
         }
     };
 
     return (
         <div className="login-page">
-            <header className="top-header">
-                <div className="promo-message">
-                    {navbarPromoMsg} <a href="#">ShopNow</a>
-                </div>
-                <div className="top-header-right">
-                    <select className="language-select">
-                        <option value="en">English</option>
-                        <option value="es">Spanish</option>
-                    </select>
-                </div>
-            </header>
+                    <div>
+                        <header>
+                            <Header/>
+                        </header>
+                    </div>
+
+           
             <nav className="navbar">
   <div className="navbar-container">
     <div className="navbar-logo">{navbarLogo}</div>
@@ -164,52 +153,9 @@ const Login = () => {
                     <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
                 </div>
             </div>
-            <footer>
-                <div className="footer-container">
-                    <div className="footer-sections">
-                        <div className="footer-section">
-                            <address>
-                                <h4>Address</h4>
-                                {footerAddress.addressLine1}<br />
-                                {footerAddress.city}, {footerAddress.state}, {footerAddress.zip}<br />
-                                {footerAddress.email}<br />
-                                {footerAddress.phone}
-                            </address>
-                        </div>
-                        <div className="footer-section">
-                            <h4>Account</h4>
-                            <ul>
-                                {footerAccountLinks.map((link, index) => (
-                                    <li key={index}>
-                                        <Link to={link.url}>{link.label}</Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div className="footer-section">
-                            <h4>Let us help you</h4>
-                            <ul>
-                                {footerHelpLinks.map((link, index) => (
-                                    <li key={index}>
-                                        <Link to={link.url}>{link.label}</Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="footer-bottom">
-                        <div className="social-icons">
-                            <FaFacebook />
-                            <FaTwitter />
-                            <FaInstagram />
-                            <FaLinkedin />
-                        </div>
-                        <div className="copyright">
-                            <RiCopyrightLine /> 2023 DealDone. All Rights Reserved.
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <div>
+                <Footer/>
+            </div>
         </div>
     );
 };

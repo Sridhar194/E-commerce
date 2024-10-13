@@ -1,5 +1,5 @@
 import React, { useState , useEffect } from 'react';
-import './signup.css'; 
+import './sellersignup.css'; 
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin,FaEye,FaEyeSlash,} from 'react-icons/fa';
 import { RiCopyrightLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
