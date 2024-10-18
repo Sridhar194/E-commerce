@@ -6,37 +6,30 @@ const BestSellingProducts = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // useEffect(() => {
-    //     // Replace '/api/products/best-selling' with your actual backend endpoint
-    //     fetch('http://localhost:5000/buyer/')
-    //         .then(response => {
-    //             if (!response.ok) {
-    //                 throw new Error('Network response was not ok');
-    //             }
-    //             return response.json();
-    //         })
-    //         .then(data => {
-    //             setProducts(data);
-    //             setLoading(false);
-    //         })
-    //         .catch(err => {
-    //             console.error('Error fetching products:', err);
-    //             setError(err);
-    //             setLoading(false);
-    //         });
-    // }, []);
+    useEffect(() => {
+        fetch('http://localhost:5000/buyer/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setProducts(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error('Error fetching products:', err);
+                setError(err);
+                setLoading(false);
+            });
+    }, []);
 
-    if (loading) {
-        return <div>Loading products...</div>;
-    }
-
-    if (error) {
-        return <div>Error loading products: {error.message}</div>;
-    }
+  
 
     return (
         <div className="best-selling-products">
-            <div className="header">
+            <div className="Bestsellingheader">
                 <h1>Best Selling Products</h1>
                 <button className="view-all-btn">View All</button>
             </div>

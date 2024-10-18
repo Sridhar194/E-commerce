@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import shoping from '../../Assets/images/Shopingimg.png';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Footer from '../../LandingPage/footer';
 import Header from '../../LandingPage/Header';
+
 const Login = () => {
     const [emailOrPhone, setEmailOrPhone] = useState('');
     const [password, setPassword] = useState('');
@@ -14,7 +15,8 @@ const Login = () => {
     // For fetching data from propertyfile.json
     const [navbarLinks, setNavbarLinks] = useState([]);
     const [navbarLogo, setNavbarLogo] = useState('');
-    
+
+    const navigate = useNavigate(); // Initialize useNavigate
 
     useEffect(() => {
         fetch('Buyer_Property/propertyfile.json')
@@ -22,7 +24,6 @@ const Login = () => {
             .then(data => {
                 setNavbarLinks(data.navbarLinks);
                 setNavbarLogo(data.navbarLogo);
-                
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
@@ -61,7 +62,7 @@ const Login = () => {
 
         try {
             console.log('Logging in with:', { emailOrPhone, password }); // Log the login attempt
-            const response = await fetch('http://localhost:5000', {
+            const response = await fetch('http://localhost:5000/buyer/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -72,7 +73,7 @@ const Login = () => {
             
             if (response.ok) {
                 alert('Logged in successfully');
-                
+                navigate('/home'); // Redirect to the home page
             } else {
                 const errorData = await response.json();
                 alert(`Error logging in: ${errorData.message || response.statusText}`);
@@ -85,29 +86,27 @@ const Login = () => {
 
     return (
         <div className="login-page">
-                    <div>
-                        <header>
-                            <Header/>
-                        </header>
-                    </div>
+            <div>
+                <header>
+                    <Header/>
+                </header>
+            </div>
 
-           
-            <nav className="navbar">
-  <div className="navbar-container">
-    <div className="navbar-logo">{navbarLogo}</div>
-    <ul className="navbar-menu">
-      {navbarLinks.map((link, index) => (
-        <li key={index}>
-          <Link to={link.url}>{link.label}</Link>
-        </li>
-      ))}
-      {/* Add the "Sign up" link */}
-      <li>
-        <Link to="/signup">Sign up</Link>
-      </li>
-    </ul>
-  </div>
-</nav>
+            <nav className="login-navbar">
+                <div className="login-navbar-container">
+                    <div className="login-navbar-logo">{navbarLogo}</div>
+                    <ul className="login-navbar-menu">
+                        {navbarLinks.map((link, index) => (
+                            <li key={index}>
+                                <Link to={link.url}>{link.label}</Link>
+                            </li>
+                        ))}
+                        <li>
+                            <Link to="/signup">Sign up</Link>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
             <div className="banner">
                 <img src={shoping} alt="Shopping bags" />

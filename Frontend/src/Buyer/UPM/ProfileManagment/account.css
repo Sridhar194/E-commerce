@@ -6,92 +6,90 @@
   font-family: Arial, sans-serif;
   justify-content: space-between;
 }
-/* Wrapper for sidebar and profile section */
-.content-wrapper {
-display: flex;
-justify-content: space-between;
-flex-grow: 1;
-}
 
+/* Wrapper for Profilesidebar and profile section */
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  max-width: 100%;
+}
 
 /* Ensure the profile section takes the remaining space */
 .profile-section {
-flex: 1;
+  flex: 1;
+  padding: 10px;
+  padding-left: 10px;
 }
 
-
 /* Sidebar styling */
-.sidebar {
+.Profilesidebar {
   width: 250px;
   background-color: #f4f4f4;
   padding: 20px;
+  padding-left: 20px;
   border-right: 1px solid #ddd;
 }
 
-.sidebar h3 {
-  margin-top: 0;
+.Profilesidebar h3 {
+  margin-top: 20px;
   font-size: 18px;
   color: #333;
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
 }
 
-.sidebar ul {
+.Profilesidebar ul {
   list-style-type: none;
   padding: 0;
 }
 
-.sidebar li {
+.Profilesidebar li {
   padding: 10px 0;
   cursor: pointer;
   color: #666;
 }
 
-.sidebar li.active,
-.sidebar li:hover {
+.Profilesidebar li.active,
+.Profilesidebar li:hover {
   color: #000;
   font-weight: bold;
 }
 
-/* Profile section styling */
-.profile-section {
-  flex: 1;
-  padding: 20px;
-  padding-top: 100px;
-  padding-left: 80px;
-}
-
+/* Profile header styling */
 .profile-header h2 {
   margin-top: 0;
   font-size: 24px;
   color: #ff0000;
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
+  margin-bottom: 20px; /* Add spacing between header and form */
 }
 
 /* Profile form styling */
-.profile-form {
-  margin-top: 20px;
-  justify-content: baseline;
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
+.user-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
 
-
-.form-group {
-  flex: 1;
-  margin-right: 20px;
 }
 
-.form-group label {
-  display: block;
+.user-form-group label {
   font-weight: bold;
   margin-bottom: 5px;
   color: #555;
+
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"] {
+.user-form-group input[type="text"],
+.user-form-group input[type="email"],
+.user-form-group input[type="password"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -104,10 +102,12 @@ flex: 1;
 .form-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 25px;
   margin-top: 20px;
-  }
+  padding-left: 500px;
+}
 
-.cancel-button,
+.edit-button,
 .save-button {
   padding: 10px 20px;
   border: none;
@@ -116,19 +116,16 @@ flex: 1;
   border-radius: 5px;
 }
 
-.cancel-button {
-  background-color: #ccc;
-  color: #333;
-  margin-top: 20px;
-  margin-right: 10px;
+.edit-button {
+  background-color: #f0f0f0;
+  
+  color: #000;
 }
 
 .save-button {
   background-color: #ff0707;
   color: #fff;
   transition: background-color 0.3s ease;
-  margin-top: 20px;
-  margin-right: 80px;
 }
 
 .save-button:hover {
@@ -141,7 +138,7 @@ flex: 1;
     flex-direction: column;
   }
 
-  .sidebar {
+  .Profilesidebar {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid #ddd;
@@ -152,23 +149,12 @@ flex: 1;
     padding: 10px;
   }
 
-  .form-row {
-    flex-direction: column;
-  }
-
-  .form-group {
-    margin-right: 0;
-    margin-bottom: 10px;
+  .user-form {
+    gap: 10px;
   }
 
   .form-actions {
     flex-direction: column;
     align-items: stretch;
   }
-
-  .cancel-button {
-    margin-bottom: 10px;
- 
-  }
-  
 }

@@ -78,7 +78,7 @@ const AccountPage = () => {
             <Homenav />
 
             <div className="content-wrapper">
-                <div className="sidebar">
+                <div className="Profilesidebar">
                     <h3>Manage My Account</h3>
                     <ul>
                         <li className="active">My Profile</li>
@@ -105,9 +105,9 @@ const AccountPage = () => {
                         <h2>Edit Your Profile</h2>
                     </div>
                     <form className="profile-form" onSubmit={handleSubmit}>
-                        <div className="form-row">
-                            <div className="form-group">
-                                <label>First Name</label>
+                        <div className="user-form-row">
+                            <div className="user-form-group">
+                                <label>Name</label>
                                 <input
                                     type="text"
                                     name="name"
@@ -116,7 +116,7 @@ const AccountPage = () => {
 
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="user-form-group">
                                 <label>Phone</label>
                                 <input
                                     type="text"
@@ -126,8 +126,8 @@ const AccountPage = () => {
                                 />
                             </div>
                         </div>
-                        <div className="form-row">
-                            <div className="form-group">
+                        <div className="user-form-row">
+                            <div className="user-form-group">
                                 <label>Email</label>
                                 <input
                                     type="email"
@@ -136,7 +136,7 @@ const AccountPage = () => {
                                     onChange={handleInputChange}
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="user-form-group">
                                 <label>Address</label>
                                 <input
                                     type="text"
@@ -148,7 +148,7 @@ const AccountPage = () => {
                         </div>
                         
                         <div className="form-actions">
-                            <button type="button" className="cancel-button">Cancel</button>
+                            <button type="edit" className='edit-button'>Edit</button>
                             <button type="submit" className="save-button">Save Changes</button>
                         </div>
                     </form>

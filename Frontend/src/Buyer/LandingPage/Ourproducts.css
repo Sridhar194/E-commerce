@@ -12,8 +12,16 @@
 }
 
 .explore-products .header h1 {
-    font-size: 2rem;
+    font-size: 24px;
     margin: 0;
+}
+.our-view-all-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 .explore-products .header .view-all-btn {
@@ -74,7 +82,7 @@
 }
 
 .explore-products .rating .stars {
-    color: #ffc107;
+    color: #000000;
     margin-right: 5px;
 }
 
@@ -101,4 +109,12 @@
     border-radius: 5px;
     margin-top: 10px;
     display: inline-block;
+}
+.view-btn {
+    background-color: #ff1900;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
 }

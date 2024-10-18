@@ -1,21 +1,18 @@
 {
   "navbarLogo": "DealDone",
   "navbarLinks": [
-    { "label": "Home", "url": "/Home" },
+    { "label": "Home", "url": "/" },
     { "label": "Contact", "url": "/contact" },
     { "label": "About", "url": "/about" }
   ],
 
-  
-    "promoMessage": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
-    "shopNowText": "Shop Now",
-    "shopNowLink": "/",
-    "languages": {
-      "en": "English",
-      "es": "Spanish"
-    },
-  
-
+  "promoMessage": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
+  "shopNowText": "Shop Now",
+  "shopNowLink": "#",
+  "languages": {
+    "en": "English",
+    "es": "Spanish"
+  },
 
   "signupPageDetails": {
     "formHeading": "Create an account",
@@ -66,7 +63,7 @@
         "label": "Sign In",
         "dropdownItems": [
           { "label": "Buyer", "path": "/login" },
-          { "label": "Seller", "path": "/Seller/signup" }
+          { "label": "Seller", "path": "/Seller/login" }
         ]
       }
     ],
@@ -76,7 +73,6 @@
     "cartButtonAlt": "cart"
   },
 
-
   "Homenavbar": {
     "searchPlaceholder": "What are you looking for?",
     "searchButtonAlt": "search",
@@ -84,47 +80,50 @@
     "cartButtonAlt": "cart"
   },
 
-   "logo": "DealDone",
+  "logo": "DealDone",
+  "menuItems": [
+    { "label": "Home", "url": "/home" },
+    { "label": "Contact", "url": "/contact" },
+    { "label": "About", "url": "/about" },
+    { "label": "Address", "url": "/address" }
+  ],
+
+  "address": {
+    "heading": "Address",
+    "details": [
+      "Sector 12, Akurdi,",
+      "Pune, Maharashtra, 33",
+      "dealdone@gmail.com",
+      "+88015-88888-9999"
+    ]
+  },
+  "account": {
+    "heading": "Account",
+    "links": ["My Account", "Login / Register", "Cart", "Wishlist", "Shop"]
+  },
+  "help": {
+    "heading": "Let us help you",
+    "links": ["Privacy Policy", "Terms Of Use", "FAQ", "Contact", "Help"]
+  },
+  "social": {
+    "facebook": "https://www.facebook.com",
+    "twitter": "https://www.twitter.com",
+    "instagram": "https://www.instagram.com",
+    "linkedin": "https://www.linkedin.com"
+  },
+  "copyright": "Copyright DealDone 2024. All rights reserved",
+
+  "homeSidebar": {
     "menuItems": [
-      { "label": "Home", "url": "/" },
-      { "label": "Contact", "url": "/contact" },
-      { "label": "About", "url": "/about" },
-      { "label": "Address", "url": "/address" }
-    ],
-    "searchPlaceholder": "What are you looking for?",
-    "icons": {
-      "search": "Buyer/Assets/images/search.png",
-      "wishlist": "Buyer/Assets/images/heart.png",
-      "cart": "Buyer/Assets/images/cart.png",
-      "account": "Buyer/Assets/images/account.png"
-    },
-
-
-  
-    "address": {
-      "heading": "Address",
-      "details": [
-        "Sector 12, Akurdi,",
-        "Pune, Maharashtra, 33",
-        "dealdone@gmail.com",
-        "+88015-88888-9999"
-      ]
-    },
-    "account": {
-      "heading": "Account",
-      "links": ["My Account", "Login / Register", "Cart", "Wishlist", "Shop"]
-    },
-    "help": {
-      "heading": "Let us help you",
-      "links": ["Privacy Policy", "Terms Of Use", "FAQ", "Contact", "Help"]
-    },
-    "social": {
-      "facebook": "https://www.facebook.com",
-      "twitter": "https://www.twitter.com",
-      "instagram": "https://www.instagram.com",
-      "linkedin": "https://www.linkedin.com"
-    },
-    "copyright": "Copyright DealDone 2024. All rights reserved"
+      "Women's Fashion",
+      "Men's Fashion",
+      "Electronics",
+      "Home & Lifestyle",
+      "Medicine",
+      "Sports & Outdoor",
+      "Baby's & Toys",
+      "Groceries & Pets",
+      "Health & Beauty"
+    ]
   }
-  
- 
+}

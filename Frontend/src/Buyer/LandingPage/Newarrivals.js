@@ -52,7 +52,8 @@ const NewArrivals = () => {
       <button className="scroll-btn left" onClick={handlePrev} disabled={currentIndex === 0}>
         <FaChevronLeft />
       </button>
-      <h1>New Arrivals</h1>
+      <div className='NewArrivalHeader'> 
+      <h2>New Arrivals</h2> </div>
       
       <div className="products-container">
         <div className="products">

@@ -1,7 +1,7 @@
 /* General button styling */
 .Button {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 10px 10px;
   font-size: 16px;
   color: rgb(0, 0, 0);
   text-decoration: none; /* Remove underline from links */
@@ -53,7 +53,8 @@
 /* Individual navbar item styling */
 .Landingnavbar-menu li {
   cursor: pointer;
-  margin: 0 20px; /* Adjusted margin for spacing */
+  padding: 10px;
+  margin: 10px 10px; /* Adjusted margin for spacing */
 }
 
 /* Navbar right section */
@@ -71,6 +72,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
+  margin: 10px 150px;
   width: 300px; /* Adjusted width */
 }
 

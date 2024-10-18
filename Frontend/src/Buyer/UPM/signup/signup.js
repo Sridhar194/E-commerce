@@ -112,7 +112,7 @@ const Signup = () => {
         setErrors({}); // Clear errors if all validations pass
 
         try {
-            const response = await fetch('http://localhost:5000', {
+            const response = await fetch('http://localhost:5000/buyer/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -146,10 +146,10 @@ const Signup = () => {
           <header>
             <Header/>
           </header>
-            <nav className="navbar">
-  <div className="navbar-container">
-    <div className="navbar-logo">{navbarLogo}</div>
-    <ul className="navbar-menu">
+            <nav className="signup-navbar">
+  <div className="signup-navbar-container">
+    <div className="signup-navbar-logo">{navbarLogo}</div>
+    <ul className="signup-navbar-menu">
       {navbarLinks.map((link, index) => (
         <li key={index}>
           <Link to={link.url}>{link.label}</Link>

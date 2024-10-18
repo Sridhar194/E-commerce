@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import search from '../Assets/images/search.png';
+import wishlist from '../Assets/images/heart.png';
+import cart from '../Assets/images/cart.png';
+import account from '../Assets/images/account.png';
 import './Homenav.css';
 
 const Navbar = () => {
     const [navbarData, setNavbarData] = useState(null);
 
     useEffect(() => {
-        // Fetch the navbar property data from the JSON file
+        // Fetch the Homenavbar property data from the JSON file
         fetch('Buyer_property/propertyfile.json')
         .then((response) => {
                 if (!response.ok) {
@@ -15,7 +19,7 @@ const Navbar = () => {
                 return response.json();
             })
             .then((data) => setNavbarData(data))
-            .catch((error) => console.error('Error fetching navbar property file:', error));
+            .catch((error) => console.error('Error fetching Homenavbar property file:', error));
     }, []);
 
     if (!navbarData) {
@@ -23,36 +27,36 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="navbar">
-            <div className="navbar-container">
-                <div className="navbar-logo">{navbarData.logo}</div>
-                <ul className="navbar-menu">
+        <nav className="Homenavbar">
+            <div className="Homenavbar-container">
+                <div className="Homenavbar-logo">{navbarData.logo}</div>
+                <ul className="Homenavbar-menu">
                     {navbarData.menuItems.map((item, index) => (
                         <li key={index}>
                             <Link to={item.url} className="Button">{item.label}</Link>
                         </li>
                     ))}
                 </ul>
-                <div className="navbar-right">
-                    <div className="search-container">
+                <div className="Homenavbar-right">
+                    <div className="Homesearch-container">
                         <input
                             type="text"
-                            placeholder={navbarData.searchPlaceholder}
-                            className="search-input"
+                            placeholder={"What are you looking"}
+                            className="Homesearch-input"
                         />
-                        <button className="search-button">
-                            <img src={navbarData.icons.search} alt="search" />
+                        <button className="Homesearch-button">
+                            <img src={search} alt="search" />
                         </button>   
                     </div>
                     <div className="icon-container">
                         <button className="wishlist-button">
-                            <img src={navbarData.icons.wishlist} alt="wishlist" />
+                            <img src={wishlist} alt="wishlist" />
                         </button>
                         <button className="cart-button">
-                            <img src={navbarData.icons.cart} alt="cart" />
+                            <img src={cart} alt="cart" />
                         </button>
                         <Link to="/account" className="cart-button">
-                            <img src={navbarData.icons.account} alt="account" />
+                            <img src={account} alt="account" />
                         </Link>
                     </div>
                 </div>

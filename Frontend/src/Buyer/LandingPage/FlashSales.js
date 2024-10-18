@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './FlashSales.css';
 import { FaHeart } from 'react-icons/fa';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import icons
-
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const FlashSales = () => {
   const [products, setProducts] = useState([]);
@@ -13,32 +12,28 @@ const FlashSales = () => {
     minutes: 19,
     seconds: 56,
   });
-  const itemsPerPage = 10; // Number of products to show per slide
+  const itemsPerPage = 2; // Updated to show 5 products
 
   useEffect(() => {
     const fetchFlashSales = async () => {
       try {
         const response = await fetch('http://localhost:5000/buyer/flashsales');
-        
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-  
         const data = await response.json();
-        
-        // Check if the fetched data is an array
         if (Array.isArray(data)) {
           setProducts(data);
         } else {
           console.error('Expected an array but received:', data);
-          setProducts([]); // Set to empty array to avoid rendering issues
+          setProducts([]);
         }
       } catch (error) {
         console.error('Error fetching flash sales data:', error);
-        setProducts([]); // Set to empty array in case of an error
+        setProducts([]);
       }
     };
-  
+
     fetchFlashSales();
 
     const countdownInterval = setInterval(() => {
@@ -66,7 +61,6 @@ const FlashSales = () => {
     return () => clearInterval(countdownInterval);
   }, []);
 
-  // Handle the manual scrolling (next and previous)
   const handleNext = () => {
     if (currentIndex < Math.ceil(products.length / itemsPerPage) - 1) {
       setCurrentIndex(currentIndex + 1);
@@ -81,7 +75,7 @@ const FlashSales = () => {
 
   return (
     <div className="flash-sales">
-      <div className="header">
+      <div className="Flashheader">
         <h2>Flash Sales</h2>
         <div className="countdown">
           <div>
@@ -103,15 +97,14 @@ const FlashSales = () => {
         </div>
       </div>
 
-      {/* Add left and right scroll buttons */}
       <div className="product-slider">
-        <button className="scroll-btn left" onClick={handlePrev} disabled={currentIndex === 0}>
-          <FaChevronLeft />
+      <button className="scroll-btn left" onClick={handlePrev} disabled={currentIndex >= Math.ceil(products.length / itemsPerPage) - 1}>
+                <FaChevronLeft />
         </button>
-        
+
         <div className="products-container">
-          <div className="products">
-            {products.slice(currentIndex * itemsPerPage, (currentIndex + 1) * itemsPerPage).map((product) => (
+          <div className="products" style={{ transform: `translateX(-${currentIndex * (100 / Math.ceil(products.length / itemsPerPage))}%)` }}>
+            {products.map((product) => (
               <div className="product-card" key={product._id}>
                 <div className="wishlist-icon">
                   <FaHeart />
@@ -131,7 +124,7 @@ const FlashSales = () => {
             ))}
           </div>
         </div>
-        
+
         <button className="scroll-btn right" onClick={handleNext} disabled={currentIndex >= Math.ceil(products.length / itemsPerPage) - 1}>
           <FaChevronRight />
         </button>
@@ -143,4 +136,3 @@ const FlashSales = () => {
 };
 
 export default FlashSales;
-

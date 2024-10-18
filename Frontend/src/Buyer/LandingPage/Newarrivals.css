@@ -1,80 +1,159 @@
-.new-arrivals-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* New Arrivals slider container */
+.Newproduct-slider {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff; /* Background similar to Flash Sales */
 }
 
-.banners-container {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.vertical-banner {
-    width: 50%;
-    margin-right: 20px;
-}
-
-.vertical-banner img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-.small-banners {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 50%;
-}
-
-.small-banner {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.small-banner img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-.new-arrivals {
-    width: 100%;
-    text-align: center;
-}
-
-.new-arrivals h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
+/* New Arrivals header */
+.NewArrivalHeader h2 {
+    font-size: 32px;
     font-weight: bold;
-}
-
-.new-arrivals-grid {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.new-arrival-card {
-    width: 200px;
-    margin: 10px;
     text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* Adjust color to match Flash Sales */
 }
 
-.new-arrival-card img {
-    width: 100%;
-    height: auto;
+/* Products container */
+.Newproducts-container {
+    overflow: hidden; /* Hide overflow to create slider effect */
+    padding: 10px 0;
+    position: relative;
+}
+
+/* Products slider */
+.Newproducts {
+    display: flex;
+    transition: transform 0.3s ease-in-out; /* Smooth slide effect */
+}
+
+/* Individual Newproduct card styling */
+.Newproduct-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 0 10px;
+    padding: 15px;
+    text-align: center;
+    width: 220px; /* Keep the width similar to Flash Sales */
+    box-sizing: border-box;
+    position: relative;
+    transition: box-shadow 0.3s ease;
+}
+
+.Newproduct-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hover effect similar to Flash Sales */
+}
+
+.Newproduct-card img {
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     margin-bottom: 10px;
 }
 
-.new-arrival-card h3 {
+.Newproduct-card h3 {
     font-size: 18px;
-    margin-bottom: 5px;
+    margin: 10px 0;
+    color: #333;
 }
 
-.new-arrival-card p {
+.price {
     font-size: 16px;
-    color: #555;
+    color: #ff5e5e; /* Use the same color as Flash Sales for prices */
+}
+
+.current-price {
+    font-weight: bold;
+    color: #ff5e5e;
+}
+
+.rating {
+    font-size: 14px;
+    color: #ff5e5e;
+    margin-bottom: 10px;
+}
+
+/* Wishlist icon styling */
+.wishlist-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #ff5e5e;
+    cursor: pointer;
+}
+
+/* Add to cart button */
+.add-to-cart {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: #ff5e5e;
+}
+
+/* Scroll buttons */
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+.scroll-btn.left {
+    left: 10px;
+}
+
+.scroll-btn.right {
+    right: 10px;
+}
+
+.scroll-btn:hover {
+    background-color: #f0f0f0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .Newproduct-card {
+        width: calc(100% / 5 - 20px); /* Show 5 Newproducts per slide */
+    }
+}
+
+@media (max-width: 768px) {
+    .Newproduct-card {
+        width: calc(100% / 3 - 20px); /* Show 3 Newproducts per slide */
+    }
+}
+
+@media (max-width: 480px) {
+    .Newproduct-card {
+        width: calc(100% / 2 - 20px); /* Show 2 Newproducts per slide */
+    }
+
+    .wishlist-icon {
+        font-size: 18px;
+    }
+
+    .add-to-cart {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
 }

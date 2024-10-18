@@ -3,7 +3,7 @@ import './category.css';
 
 // Import local images
 import phonesIcon from '../Assets/images/smartphone.png';
-import shoeIcon from '../Assets/images/shoes.png';
+import shoeIcon from '../Assets/images/shoe.png';
 import chefIcon from '../Assets/images/chef.png';
 import fashionIcon from '../Assets/images/fashion.png'; 
 import headphonesIcon from '../Assets/images/headphones.png';
