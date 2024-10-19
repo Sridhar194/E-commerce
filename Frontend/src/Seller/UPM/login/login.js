@@ -1,5 +1,5 @@
 import React, { useState ,useEffect } from 'react';
-import './sellerlogin.css'; 
+import './login.css'; 
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -139,7 +139,7 @@ const Login = () => {
                         <button type="button" className="forgot-password-btn">Forgot Password?</button>
                         <button type="submit" className="login-btn">Log In</button>
                     </form>
-                    <p>Don't have an account? <Link to="/signup" className='sign-up'>Create account</Link></p>
+                    <p>Don't have an account? <Link to="/seller/signup" className='sign-up'>Create account</Link></p>
                 </div>
             </div>
             <Footer />

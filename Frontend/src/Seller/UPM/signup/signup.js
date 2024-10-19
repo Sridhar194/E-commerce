@@ -1,7 +1,6 @@
 import React, { useState , useEffect } from 'react';
-import './sellersignup.css'; 
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin,FaEye,FaEyeSlash,} from 'react-icons/fa';
-import { RiCopyrightLine } from "react-icons/ri";
+import './signup.css'; 
+import { FaEye,FaEyeSlash} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { Link, Navigate } from 'react-router-dom';
 import Yourstore from '../../assets/images/Yourstore.png';
@@ -12,7 +11,7 @@ import Footer from '../../component/Footer';
 
 
 const Signup = () => { 
-    const navigate = useNavigate();
+    const navigate = useNavigate();//for navigate
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -21,27 +20,30 @@ const Signup = () => {
     
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [errors, setErrors] = useState({});
+
     const [signupHeading, setSignupHeading] = useState([]); // Initialize as an empty array
     const[signuploginHeading,setsignuploginHeading]=useState();
 
-    const [errors, setErrors] = useState({});
-
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
     useEffect(() => {
-        // Fetch the JSON file from the public folder
         fetch('/locals/propertyFile.json')
-            .then(response => response.json())
+            .then(response => {
+                console.log('Response:', response);
+                return response.json();
+            })
             .then(data => {
-                setSignupHeading(data.signupHeading || []); // Ensure it's an array
+                console.log('Data:', data);
+                setSignupHeading(data.signupHeading || []);
                 setsignuploginHeading(data.signuploginHeading);
             })
             .catch(error => console.error('Error fetching signup headings:', error));
     }, []);
-
+    
     const toggleConfirmPasswordVisibility = () => {
         setShowConfirmPassword(!showConfirmPassword);
+    }; 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
     };
 
     const validateName = (name) => /^[a-zA-Z\s]+$/.test(name);
@@ -140,14 +142,13 @@ const Signup = () => {
             <div className="banner">
             <img src={Yourstore} alt="Your store" />
             <div className="signup-form-container">
-            {signupHeading.length > 0 ? ( // Check if signupHeading has items
-                        <>
-                            <h2 className='heading-h'>{signupHeading[0].heading1}</h2>
-                            <p className='heading-p'>{signupHeading[0].heading2}</p>
-                        </>
-                    ) : (
-                        <p>Loading...</p> // Optional loading state
-                    )}
+            {signupHeading.length > 0 && ( // Check if signupHeading has items
+                <>
+                    <h2 className='heading-h'>{signupHeading[0].heading1}</h2>
+                    <p className='heading-p'>{signupHeading[0].heading2}</p>
+                </>
+            )}      
+
                     <form className="signup-form" onSubmit={handleCreateAccount}>
                         <input 
                             type="text" 
@@ -225,8 +226,10 @@ const Signup = () => {
                         <button type="submit" className="create-account-btn">Create Account</button>
                         <button type="button" className="google-signup-btn" onClick={handleGoogleSignup}><FcGoogle className='google'/>Sign up with Google</button>
                     </form>
-                    <p>Already have an account? 
-                    <Link to="/login" className='sign-up'> Log in</Link></p>
+                    <p>
+                        Already have an account? 
+                        <Link to="/seller/login" className='sign-up'> Log in</Link>
+                    </p>
                     </div>
             </div>
            <Footer/>

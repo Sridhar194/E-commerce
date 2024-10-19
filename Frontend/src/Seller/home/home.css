@@ -52,37 +52,43 @@
 .left-heading{
   font-size: 70px;
 } */
-.content {
+.Sellercontent {
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: stretch;
+  margin-top: -20px;
  
 }
 
-.left-section {
+.Sellerleft-section {
   flex-basis: 50%;
   background-color: #f0f8ff;
   font-weight: bold;
   font-size: 24px;
-  height: 375px;}
+  padding: 15px; /* Add padding for spacing */
+  box-sizing: border-box; /* Ensures padding is included in the width and height */
+  display: flex;
+  align-items: center; /* Vertically center the content */
+  justify-content: center; /* Horizontally center the text */
+}
 
-.right-section {
+.Sellerright-section {
   flex-basis: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.right-section img {
+.Sellerright-section img {
   max-width: 100%;
   max-height: 100%; /* Ensure the image doesn't overflow */
   height: auto;
   object-fit: cover; /* Make the image cover its container while maintaining aspect ratio */
 }
 
-.left-heading {
-  font-size: 70px;
-  
+.Sellerleft-heading {
+  font-size: 60px;
+  font-weight: normal;
 }
 
 
@@ -195,28 +201,23 @@
   margin: 0 10px 60px;
 }
 
-
 @media (max-width: 768px) {
-  .content {
+  .Sellercontent {
     flex-direction: column;
     justify-content: center;
-    height: auto; /* Adjust height for smaller screens */
-    padding: 20px; /* Add some padding for spacing */
   }
 
-  .left-section, .right-section {
-    width: 100%;
-    margin: 10px 0;
-    padding: 20px; /* Add padding to make text more readable */
-    flex-basis: unset; /* Ensure flexbox doesn't override width on smaller screens */
+  .Sellerleft-section, .Sellerright-section {
+    flex-basis: 100%;
+    height: auto; /* Auto height for small screens */
   }
 
-  .left-heading {
-    font-size: 24px; /* Adjust font size for smaller screens */
+  .Sellerleft-heading {
+    font-size: 30px; /* Adjust heading font size for smaller screens */
   }
 
-  .right-section img {
+  .Sellerright-section img {
     max-width: 100%;
-    height: auto; /* Ensure image resizes correctly */
+    height: auto; /* Ensure the image resizes correctly */
   }
 }

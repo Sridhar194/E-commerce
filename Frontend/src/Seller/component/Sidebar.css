@@ -7,12 +7,13 @@
   padding: 0 20px;
 }
 
-.hamburger-icon {
+.Sellerhamburger-icon {
   color: #fff;
   font-size: 24px;
   cursor: pointer;
   z-index: 250;
   margin-right: 35px;
+  margin-top: 15px;
 }
 
 .Sellersidebar {

@@ -13,11 +13,11 @@ function Home() {
   return (
     <div>
       <Header />
-      <div className="content">
-              <div className="left-section">
-                <h1 className="left-heading">Grow Your business online on Deal Done and become an identified Seller</h1>
+      <div className="Sellercontent">
+              <div className="Sellerleft-section">
+                <h1 className="Sellerleft-heading">Grow Your business online on Deal Done and become an identified Seller</h1>
               </div>
-              <div className="right-section">
+              <div className="Sellerright-section">
               <img src={Sell} alt="Sell" />
               </div>
       </div>

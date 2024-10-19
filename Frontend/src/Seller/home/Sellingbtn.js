@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function Sellingbtn() {
   const navigate=useNavigate();
   const handleNavigate = () => {
-    navigate('/Profile');  // Use navigate inside the callback
+    navigate('/seller/Profile');  // Use navigate inside the callback
   };
   return (
     <div className='Selling-container'>

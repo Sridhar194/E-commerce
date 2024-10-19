@@ -7,7 +7,7 @@ body {
   overflow-x: hidden;
 }
 
-.top-header {
+.Sellertop-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,50 +17,52 @@ body {
   font-size: 14px;
 }
 
-.promo-message {
+.Sellerpromo-message {
   flex: 1;
   display: flex;
   justify-content: center;
   font-size: 12px;
 }
 
-.promo-message Link {
+.Sellerpromo-message a {
   color: #fff;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-.top-header-right {
+.Sellertop-header-right {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.language-select {
+.Sellerlanguage-select {
   padding: 5px;
   border: none;
   border-radius: 4px;
   background-color: black;
   color: white;
   margin-right: 20px;
+  margin-top: 10px;
 }
 
-.navbar {
+.Sellernavbar {
   background-color: white;
   border-bottom: 1px solid #000;
 }
 
-.navbar-container {
+.Sellernavbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.navbar-logo {
-  font-size: 32px;
+.Sellernavbar-logo {
+  font-size: 30px;
   font-weight: bold;
+  margin-left: 70px;
 }
 
-.navbar-menu {
+.Sellernavbar-menu {
   list-style: none;
   display: flex;
   justify-content: center;
@@ -68,12 +70,12 @@ body {
   margin-left: 507px;
   align-items: center;
 }
-.navbar-menu li a{
+.Sellernavbar-menu li a{
   text-decoration: none;
   color: inherit;
   color: #000;
 }
-.navbar-menu li {
+.Sellernavbar-menu li {
   cursor: pointer;
   align-items: center;
   margin: 10px 0;
@@ -101,14 +103,18 @@ body {
   font-family: Arial, sans-serif;
   font-weight: bold;
   margin-top: 0px;
-  margin-bottom: 10px;
-  /* margin-right: 27px;  */
+  margin-bottom: 12px;
+  margin-right: 67px;
+  font-size: 27px;
 }
 .heading-p{
-font-family: Arial, sans-serif;
-font-weight: bold;
-margin-top: 0px;
-margin-right: 114px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  margin-top: -8px;
+  margin-right: 102px;
+  margin-bottom: 20px;
+  font-size: 17px;
+
 }
 
 .signup-form-container {
@@ -184,7 +190,7 @@ margin-right: 114px;
   color: black;  
 }
               /* footer */
-.footer-container {
+.seller-footer-container {
   background-color: #000;
   color: #fff;
   padding: 20px;
@@ -194,7 +200,7 @@ margin-right: 114px;
   width: 100%;
 }
 
-.footer-sections {
+.seller-footer-sections {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -207,7 +213,7 @@ margin-right: 114px;
   margin-bottom: -11px;
 }
 
-.footer-section {
+.seller-footer-section {
  
   flex: 1;
   margin: 10px 20px;
@@ -217,7 +223,7 @@ margin-right: 114px;
   margin-bottom: auto;
 }
 
-.footer-section h4 {
+.seller-footer-section h4 {
   margin-bottom: 20px;
   font-size: 18px;
   font-weight: bold;
@@ -225,7 +231,7 @@ margin-right: 114px;
   margin-bottom: 20px;
 }
 
-.footer-section ul {
+.seller-footer-section ul {
   list-style: none;
   padding: 0;
   margin-left: 100px;
@@ -235,46 +241,49 @@ margin-right: 114px;
   margin: 5px 0; */
   /* line-height: 1.5;
 */
-.footer-section li a{ 
+.seller-footer-section li a{ 
   text-decoration: none;
   color: inherit;
 }
-.footer-bottom {
+.seller-footer-bottom {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
 }
 
-.footer-social {
+.seller-footer-social {
   display: flex;
   gap: 15px;
   justify-content: center;
 }
 
-.footer-social a{
+.seller-footer-social a{
   color: #e7d0d0;
   transition: color 0.3s;
 }
 
-.footer-social Link:hover {
+.seller-footer-social Link:hover {
   color: #fff;
 }
 
-.footer-copyright-container {
+.seller-footer-copyright-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.footer-copyright {
+.seller-footer-copyright {
   font-size: 12px;
   text-align: center;
   margin-left: 5px;
   color: #555;
   margin-top: 10px;
 }
-
+.seller-RiCopyrightLine{
+  color:#555;
+  margin-top: 7px;
+}
 .error-message {
   color: red;
   font-size: 12px;

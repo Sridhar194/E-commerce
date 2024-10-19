@@ -1,3 +1,4 @@
+
 /* Existing CSS */
 * {
     margin: 0;
@@ -5,9 +6,10 @@
     box-sizing: border-box; 
     scroll-behavior: smooth;
 }
-.product-page {
+.seller-productPage {
     min-height: 100vh; /* Ensure the page height is at least the height of the viewport */
     height: 100%; /* Set height to 100% of the viewport */
+    margin-top: 20px;
   
 }
 
@@ -32,6 +34,13 @@
     margin-left: 25px;
     margin-top: 10px;
     color: gray;
+}
+.form {
+    margin-top: 50px; /* Adds some space from the top */
+    padding: 20px; /* Adds padding inside the form */
+    display: flex;
+    flex-direction: column; /* Ensures the form fields stack vertically */
+    gap: 20px; /* Adds space between the form fields */
 }
 
 .product-heading {
@@ -95,23 +104,26 @@
 .line {
     margin-top: 10px;
 }
-.heading-add{
+.seller-heading-add{
     font-size: 40px;
     font-weight:600;
-    margin-left:50px
+    margin-left:115px;
+    margin-bottom: 30px;
 }
-.addproduct-container{
+.seller-addproduct-container{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80vh; /* Make the container take full viewport height */
-    gap: 50px; /* Add some space between the form and the image upload box */
-    padding: 0 2rem; /* Optional: Add padding if necessary */
+    gap: 0px; /* Add some space between the form and the image upload box */
+    padding: 6 5rem; /* Optional: Add padding if necessary */
+
 }
-.addproduct-form,
+.seller-addproduct-form,
 .image-upload-container {
   flex: 1; /* Make both the form and image upload box take equal space */
-  max-width: 600px; /* Add a max-width to prevent them from stretching too much */
+  max-width: 700px; /* Add a max-width to prevent them from stretching too much */
+  margin-left: 100px;
 }
 /* .addproduct {
     display: flex;
@@ -119,41 +131,76 @@
     margin-top: 50px;
 } */
 
-.addproduct-form {
+.seller-addproduct-form {
     display: flex;
     flex-direction: column;
     max-width: 700px;
-    max-height: 500px;
-    /* margin-top: 150px; */
+    max-height: 100%;
+    margin-top: 15px;
+    margin-right: 145px;
 }
 .discount-option{
     padding: 10px;
 }
-.labels {
-    font-size: 30px;
+.seller-productlabels {
+    font-size: 32px;
     margin-bottom: 10px;
 }
+.input, select {
+    margin-bottom: 20px; /* Adds space between input fields */
+    padding: 10px;
+    font-size: 16px;
+    width: 100%; /* Ensure inputs take up the full width of the container */
+}
 
-.inputtypes {
+/* Specific to the top part */
+#product-description {
+    margin-top: 20px; /* Adds space above the input */
+    width: 80%; /* Adjust the width as needed */
+}
+
+.seller-inputtypes {
     width: 400px;
     height: 55px !important;
     border: 1px solid black;
     border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 10px;
+    margin-bottom: 40px;
+    padding: 13px;
+}
+.sellerShipping-options {
+    display: flex;
+    flex-direction: row;
+    gap: 19px;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-left: -9px;
+}
+
+.sellerShipping-options label {
+    font-size: 16px;
+}
+
+.sellerShipping-options input[type="radio"] {
+    margin-right: 5px;
+}
+
+.seller-discount{
+    margin-left: 10px;
 }
 .image-upload-container {
-    padding: 2rem;
+    /* padding: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 90vh; */
+    margin-bottom: 100px;
 }
 
 .box-decoration {
-    border: 1px solid black;
+    /* border: 1px solid black;  */
     border-radius: 5px;
-    padding: 100px 100px;
+    padding: 65px 65px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -163,7 +210,7 @@
 
 .image-upload-label {
     font-size: 1.5rem;
-    font-weight: bold;
+    /* font-weight: bold; */
     margin-bottom: 1rem;
     cursor: pointer;
 }
@@ -187,20 +234,31 @@
 }
 
 .img-display-before {
-    height: 200px;
-    width: 200px;
+    /* height: 150px;
+    width: 150px;
     margin-left: 35px;
+    border-radius: 50%; */
+    width: 160px;        /* Set equal width and height */
+  height: 160px;
+  object-fit: cover;   /* Ensures the image fills the circle without distortion */
+  overflow: hidden;    /* Ensures no content overflows the circle */
+  display: inline-block; 
 }
-
-.img-display-after {
+.div-img{
     height: 200px;
     width: 200px;
     border-radius: 100%;
 }
-.img-heading{
-    font-size: 20px;
+.img-display-after {
+    height: 200px;
+    width: 200px;
+    /* border-radius: 100%; */
 }
-.confirm-button{
+.img-heading{
+    font-size: 25px;
+    font-weight: normal;
+}
+.Sellerconfirm-button{
     background-color: #DB4444;
     border: none;
     color: white;
@@ -208,8 +266,8 @@
     margin-top: 1rem;
     cursor: pointer;
     border-radius: 5px;
-    height: 100px;
-    width: 100px;
+    height: 56px;
+    width: 150px;
 }
 /* General styling for error messages */
 .error {
@@ -218,13 +276,157 @@
   }
   
   /* Add some spacing around the error message */
-  .inputtypes + .error {
+  .seller-inputtypes + .error {
     margin-left: 5px; /* Add a bit of space to the left of the error message */
   }
   
-  .discount-options .error,
-  .shipping-options .error {
+  .seller-discount-options .error,
+  .sellerShipping-options .error {
     margin-left: 0; /* Align error messages for radio inputs */
     margin-top: 0px; /* Add spacing above the error message */
   }
   
+  /* Media query for devices with a max-width of 1024px (tablet landscape) */
+@media (max-width: 1024px) {
+    .product-heading {
+        font-size: 32px;
+    }
+    .seller-addproduct-container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .seller-inputtypes {
+        width: 100%;
+        height: 50px;
+    }
+    .image-upload-container {
+        max-width: 100%;
+    }
+    .image-upload-button {
+        width: 100%;
+    }
+    .img-display-before,
+    .img-display-after {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Media query for devices with a max-width of 768px (tablet portrait) */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        height: auto;
+    }
+    .shopping-icon {
+        margin-left: 10px;
+    }
+    .product-heading {
+        font-size: 28px;
+    }
+    .search {
+        width: 200px;
+    }
+    .rightside-icon {
+        margin-top: 10px;
+    }
+    .seller-seller-addproduct-form {
+        max-width: 100%;
+    }
+    .seller-inputtypes {
+        width: 100%;
+        height: 50px;
+    }
+    .Sellerconfirm-button {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Media query for devices with a max-width of 600px (small tablets & large phones) */
+@media (max-width: 600px) {
+    .product-heading {
+        font-size: 24px;
+    }
+    .search-container {
+        margin-left: 10px;
+    }
+    .seller-seller-addproduct-container {
+        padding: 0;
+    }
+    .seller-seller-addproduct-form,
+    .image-upload-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .img-display-before,
+    .img-display-after {
+        width: 120px;
+        height: 120px;
+    }
+    .Sellerconfirm-button {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+/* Media query for devices with a max-width of 480px (phones) */
+@media (max-width: 480px) {
+    .header-top {
+        font-size: 12px;
+        padding: 5px;
+    }
+    .shopping-icon {
+        margin-left: 5px;
+    }
+    .product-heading {
+        font-size: 20px;
+    }
+    .search {
+        width: 150px;
+    }
+    .seller-inputtypes {
+        width: 100%;
+        height: 45px;
+    }
+    .img-display-before,
+    .img-display-after {
+        width: 100px;
+        height: 100px;
+    }
+    .Sellerconfirm-button {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Media query for devices with a max-width of 360px (small phones) */
+@media (max-width: 360px) {
+    .product-heading {
+        font-size: 18px;
+    }
+    .search-container {
+        margin-left: 5px;
+    }
+    .shopping-icon {
+        width: 30px;
+        height: 30px;
+    }
+    .seller-inputtypes {
+        width: 100%;
+        height: 40px;
+    }
+    .img-display-before,
+    .img-display-after {
+        width: 80px;
+        height: 80px;
+    }
+    .Sellerconfirm-button {
+        width: 50px;
+        height: 50px;
+    }
+}

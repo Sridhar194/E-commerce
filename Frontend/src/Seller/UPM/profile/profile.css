@@ -1,0 +1,255 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-section {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  margin-top: 0px;
+}
+
+.profile-image {
+  width: 210px;
+  height: 210px;
+  margin-top: 80px;
+}
+.img-div{
+  height: 100px;
+  width: 100px;
+}
+
+.personal-details {
+  flex: 1;
+  margin-left: 200px;
+  margin-top: 19px;
+}
+.business-content{
+  flex-direction: column;
+}
+
+
+.section1 {
+  /* margin-bottom: 60px; */
+  display: flex;
+  align-content: center;
+  gap: 300px;
+  padding: 0 2rem;
+  /* margin-top: 50px; */
+}
+.section2 {
+  /* margin-bottom: 60px; */
+  display: flex;
+  align-content: center;
+  gap: 300px;
+  padding: 0 2rem;
+  margin-top: 20px;
+  /* margin-top: 50px; */
+}
+
+.Sellerh2 {
+  font-size: 38px;
+  margin-bottom: 15px;
+  font-weight: normal;
+}
+
+.field {
+  margin-bottom: 10px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: x-large;
+}
+
+.personal-input {
+  font-size: 1rem;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 70%;
+  outline: none;
+}
+.business-input{
+  font-size: 1rem;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 150%;
+  outline: none;
+}
+.tax-input{
+  font-size: 1rem;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 210%;
+  outline: none;
+}
+.store-input{
+  font-size: 1rem;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 171%;
+  outline: none;
+}
+.bank-input{
+  font-size: 1rem;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 171%;
+  outline: none;
+}
+.business-logo {
+  width: 150px;
+  height: 150px;
+  margin-left: 900px;
+  margin-bottom: 8px;
+}
+.Sellerconfirm-button{
+  height: 40px;
+  width: 200px;
+  margin-left: 30px;
+  background-color: #DB4444;
+  border-radius: 15px;
+  border: none;
+}
+
+
+/* Error message styling */
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Error input field styling */
+.error-input {
+  border: 2px solid red;
+  background-color: #ffe6e6;
+}
+
+/* Add some margin between error input and the next element */
+.field {
+  margin-bottom: 20px;
+}
+
+
+
+/* Media Queries */
+
+/* For tablets (768px and smaller) */
+@media (max-width: 768px) {
+  .profile-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
+  }
+
+  .personal-details {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .section1,
+  .section2 {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+  }
+
+  .business-logo {
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+
+  .business-input,
+  .tax-input,
+  .store-input,
+  .bank-input {
+    width: 100%;
+  }
+
+  .Sellerconfirm-button {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+/* For mobile devices (600px and smaller) */
+@media (max-width: 600px) {
+  h2 {
+    font-size: 28px;
+  }
+  .personal-input,
+  .business-input,
+  .tax-input,
+  .store-input,
+  .bank-input {
+    font-size: 0.9rem;
+  }
+
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .section1,
+  .section2 {
+    gap: 10px;
+  }
+
+  .Sellerconfirm-button {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+/* For very small devices (360px and smaller) */
+@media (max-width: 360px) {
+  h2 {
+    font-size: 24px;
+  }
+
+  .field label {
+    font-size: large;
+  }
+
+  .profile-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .personal-input,
+  .business-input,
+  .tax-input,
+  .store-input,
+  .bank-input {
+    font-size: 0.8rem;
+    width: 100%;
+  }
+
+  .Sellerconfirm-button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}

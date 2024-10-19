@@ -1,4 +1,4 @@
-import './sellerprofile.css';
+import './profile.css';
 import React, { useState, useEffect, useRef } from 'react';
 import photo from '../../assets/images/photo.png'; // Make sure the path is correct
 import Header from './Header';
@@ -8,7 +8,6 @@ import axios from 'axios';
 function Profile() {
   const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})(\/[\w .-]*)*\/?$/;
   const gstRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
-    
   const [personalDetails, setPersonalDetails] = useState({
     name: '',
     phone: '',
@@ -50,7 +49,7 @@ function Profile() {
   useEffect(() => {
     const fetchSellerData = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/seller/profile', {
+        const response = await axios.get('http://localhost:5000/api/seller/profile', {
           withCredentials: true, // Ensure cookies are sent with the request
         });
         const data = response.data.user;
@@ -143,27 +142,28 @@ function Profile() {
 
     return errors;
   };
- // Handle file input change for profile image upload
- const handleProfileFileInputChange = (event) => {
-  const file = event.target.files[0];
-  setProfileImage(file);
-};
+  // Handle file input change for profile image upload
+  const handleProfileFileInputChange = (event) => {
+    const file = event.target.files[0];
+    setProfileImage(file);
+  };
 
-// Handle file input change for logo upload
-const handleLogoFileInputChange = (event) => {
-  const file = event.target.files[0];
-  setLogoImage(file);
-};
+  // Handle file input change for logo upload
+  const handleLogoFileInputChange = (event) => {
+    const file = event.target.files[0];
+    setLogoImage(file);
+  };
 
-// Trigger file input for profile image on click
-const handleProfileImageClick = () => {
-  hiddenProfileInput.current.click();
-};
+  // Trigger file input for profile image on click
+  const handleProfileImageClick = () => {
+    hiddenProfileInput.current.click();
+  };
 
-// Trigger file input for logo on click
-const handleLogoImageClick = () => {
-  hiddenLogoInput.current.click();
-};
+  // Trigger file input for logo on click
+  const handleLogoImageClick = () => {
+    hiddenLogoInput.current.click();
+  };
+
 
   // Handle form submission
   const handleConfirmClick = async () => {
@@ -186,18 +186,18 @@ const handleLogoImageClick = () => {
       formData.append("AccountHolderName", bankDetails.AccountHolderName);
       formData.append("IfscCode", bankDetails.IfscCode);
 
-     // Append profile image if uploaded
-     if (profileImage) {
-      formData.append("profileImage", profileImage);
-    }
-    
-    // Append logo image if uploaded
-    if (logoImage) {
-      formData.append("logoImage", logoImage);
-    }
 
+      // Append profile image if uploaded
+      if (profileImage) {
+        formData.append("profileImage", profileImage);
+      }
+      
+      // Append logo image if uploaded
+      if (logoImage) {
+        formData.append("logoImage", logoImage);
+      }
       try {
-        const response = await fetch("http://localhost:5000/seller/profile", {
+        const response = await fetch("http://localhost:5000/api/seller/profile", {
             method: 'PUT',
             credentials: 'include', // Ensure cookies are sent with the request
             body: formData
@@ -222,7 +222,6 @@ const handleLogoImageClick = () => {
   return (
     <>
       <Header />
-      {/ <FetchData setPersonalDetails={setPersonalDetails} /> /} */}
       <div className="container">
         <div className="profile-section">
           <div className="box-decoration">
@@ -244,7 +243,7 @@ const handleLogoImageClick = () => {
           </div>
         
           <div className="personal-details">
-            <h2>Personal details</h2>
+            <h2 className='Sellerh2'>Personal details</h2>
             {['name', 'phone', 'Address', 'email'].map((field, index) => (
               <div className="field" key={index}>
                 <label>{field.replace(/([A-Z])/g, ' $1')}:</label>
@@ -261,7 +260,7 @@ const handleLogoImageClick = () => {
 
         <div className="section1">
           <div className='busniess-content1'>
-            <h2>Business details</h2>
+            <h2 className='Sellerh2'>Business details</h2>
             {['CompanyName', 'WebsiteUrl', 'BusinessType', 'BusinessAddress'].map((field, index) => (
               <div className="field" key={index}>
                 <label>{field.replace(/([A-Z])/g, ' $1')}:</label>
@@ -295,7 +294,7 @@ const handleLogoImageClick = () => {
 
         <div className="section2">
           <div className='busniess-content'>
-            <h2>Tax details</h2>
+            <h2 className='Sellerh2'>Tax details</h2>
             {['State', 'TaxImposed', 'GST'].map((field, index) => (
               <div className="field" key={index}>
                 <label>{field.replace(/([A-Z])/g, ' $1')}:</label>
@@ -313,7 +312,7 @@ const handleLogoImageClick = () => {
 
         <div className="section2">
           <div className='busniess-content'>
-            <h2>Store Address</h2>
+            <h2 className='Sellerh2'> Store Address</h2>
             <div className="field">
               <label>Store Address:</label>
               <input
@@ -329,7 +328,7 @@ const handleLogoImageClick = () => {
 
         <div className="section2">
           <div className='busniess-content'>
-            <h2>Bank details</h2>
+            <h2 className='Sellerh2'>Bank details</h2>
             {['AccountType', 'AccountHolderName', 'IfscCode'].map((field, index) => (
               <div className="field" key={index}>
                 <label>{field.replace(/([A-Z])/g, ' $1')}:</label>
@@ -344,15 +343,10 @@ const handleLogoImageClick = () => {
             ))}
           </div>
         </div>
-        <button type="button" className="confirm-button" onClick={handleConfirmClick}>Confirm</button>
+        <button type="button" className="Sellerconfirm-button" onClick={handleConfirmClick}>Confirm</button>
       </div>
     </>
   );
 }
 
 export default Profile;  
-
-  
-
-
-  

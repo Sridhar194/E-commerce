@@ -10,6 +10,8 @@ import { CgPerformance } from "react-icons/cg";
 import { MdAddCall } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoHome } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
+
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,23 +28,30 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const handleNavigateToProductManage = () => {
-    navigate('/Productmanage');
+    navigate('/seller/Productmanage');
   };
 
   const handleNavigateToHome = () => {
-    navigate('/Home');
+    navigate('/seller/Home');
   };
+  const handleNavigateToProfile=()=>{
+    navigate('/seller/Profile')
+  }
 
   return (
     <div>
       <div className="header">
-        <GiHamburgerMenu className="hamburger-icon" onClick={toggleSidebar} />
+        <GiHamburgerMenu className="Sellerhamburger-icon" onClick={toggleSidebar} />
       </div>
       <div className={`Sellersidebar ${isOpen ? 'open' : ''}`}>
         <ul className='Sellersidebar-content'>
           <li onClick={handleNavigateToHome}>
             <IoHome className='Sellersidebar-icon' />
             <span className='Sellersidebar-opt'>Home</span>
+          </li>
+          <li onClick={handleNavigateToProfile}>
+          <CgProfile className='Sellersidebar-icon' />
+          <span className='Sellersidebar-opt'>Profile</span>
           </li>
           <li>
             <MdOutlineInventory className='Sellersidebar-icon' />
