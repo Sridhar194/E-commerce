@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './FlashSales.css';
 import { FaHeart } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const FlashSales = () => {
   const [products, setProducts] = useState([]);
@@ -9,19 +10,34 @@ const FlashSales = () => {
     days: 3,
     hours: 23,
     minutes: 19,
-    seconds: 56
+    seconds: 56,
   });
-  const itemsPerPage = 4; // Number of products to show per slide
+  const itemsPerPage = 2; // Updated to show 5 products
 
   useEffect(() => {
-    // Replace the URL with your actual backend endpoint
-    fetch('https://your-backend-api.com/api/flash-sales')
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .catch(error => console.error('Error fetching data:', error));
+    const fetchFlashSales = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/buyer/flashsales');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else {
+          console.error('Expected an array but received:', data);
+          setProducts([]);
+        }
+      } catch (error) {
+        console.error('Error fetching flash sales data:', error);
+        setProducts([]);
+      }
+    };
+
+    fetchFlashSales();
 
     const countdownInterval = setInterval(() => {
-      setTimeRemaining(prevTime => {
+      setTimeRemaining((prevTime) => {
         const totalSeconds =
           prevTime.days * 24 * 60 * 60 +
           prevTime.hours * 60 * 60 +
@@ -45,9 +61,21 @@ const FlashSales = () => {
     return () => clearInterval(countdownInterval);
   }, []);
 
+  const handleNext = () => {
+    if (currentIndex < Math.ceil(products.length / itemsPerPage) - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
   return (
     <div className="flash-sales">
-      <div className="header">
+      <div className="Flashheader">
         <h2>Flash Sales</h2>
         <div className="countdown">
           <div>
@@ -68,30 +96,40 @@ const FlashSales = () => {
           </div>
         </div>
       </div>
-        
-        <div className="products">
-          {products.slice(currentIndex * itemsPerPage, (currentIndex + 1) * itemsPerPage).map((product) => (
-            <div className="product-card" key={product.id}>
-              <div className="wishlist-icon">
-                <FaHeart />
+
+      <div className="product-slider">
+      <button className="scroll-btn left" onClick={handlePrev} disabled={currentIndex >= Math.ceil(products.length / itemsPerPage) - 1}>
+                <FaChevronLeft />
+        </button>
+
+        <div className="products-container">
+          <div className="products" style={{ transform: `translateX(-${currentIndex * (100 / Math.ceil(products.length / itemsPerPage))}%)` }}>
+            {products.map((product) => (
+              <div className="product-card" key={product._id}>
+                <div className="wishlist-icon">
+                  <FaHeart />
+                </div>
+                <div className="discount">{`-${product.productDiscount}`}</div>
+                <img src={product.imageUrl} alt={product.productName} />
+                <h3>{product.productName}</h3>
+                <div className="price">
+                  <span className="current-price">₹{product.productPrice}</span>
+                </div>
+                <div className="rating">
+                  <span>{'★'.repeat(Math.round(product.rating || 1))}</span>
+                  <span>({product.reviews || 1})</span>
+                </div>
+                <button className="add-to-cart">Add To Cart</button>
               </div>
-              <div className="discount">{`-${product.discount}%`}</div>
-              <img src={product.imageUrl} alt={product.name} />
-              <h3>{product.name}</h3>
-              <div className="price">
-                <span className="current-price">${product.price}</span>
-                <span className="original-price">${product.originalPrice}</span>
-              </div>
-              <div className="rating">
-                <span>{'★'.repeat(Math.round(product.rating))}</span>
-                <span>({product.reviews})</span>
-              </div>
-              <button className="add-to-cart">Add To Cart</button>
-            </div>
-          ))}
-        
+            ))}
+          </div>
+        </div>
+
+        <button className="scroll-btn right" onClick={handleNext} disabled={currentIndex >= Math.ceil(products.length / itemsPerPage) - 1}>
+          <FaChevronRight />
+        </button>
       </div>
-      
+
       <button className="view-all">View All Products</button>
     </div>
   );

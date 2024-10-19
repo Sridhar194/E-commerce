@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './login.css';
-import { Link } from 'react-router-dom';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import { RiCopyrightLine } from 'react-icons/ri';
+import { Link, useNavigate } from 'react-router-dom';
 import shoping from '../../Assets/images/Shopingimg.png';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Footer from '../../LandingPage/footer';
+import Header from '../../LandingPage/Header';
 
 const Login = () => {
     const [emailOrPhone, setEmailOrPhone] = useState('');
@@ -15,10 +15,8 @@ const Login = () => {
     // For fetching data from propertyfile.json
     const [navbarLinks, setNavbarLinks] = useState([]);
     const [navbarLogo, setNavbarLogo] = useState('');
-    const [navbarPromoMsg, setNavbarPromoMsg] = useState('');
-    const [footerAddress, setFooterAddress] = useState({});
-    const [footerAccountLinks, setFooterAccountLinks] = useState([]);
-    const [footerHelpLinks, setFooterHelpLinks] = useState([]);
+
+    const navigate = useNavigate(); // Initialize useNavigate
 
     useEffect(() => {
         fetch('Buyer_Property/propertyfile.json')
@@ -26,10 +24,6 @@ const Login = () => {
             .then(data => {
                 setNavbarLinks(data.navbarLinks);
                 setNavbarLogo(data.navbarLogo);
-                setNavbarPromoMsg(data.navbarPromoMsg);
-                setFooterAddress(data.footerAddress);
-                setFooterAccountLinks(data.footerAccountLinks);
-                setFooterHelpLinks(data.footerHelpLinks);
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
@@ -67,54 +61,52 @@ const Login = () => {
         setErrors({}); // Clear errors if all validations pass
 
         try {
-            const response = await fetch('http://192.168.137.43:5000/api/register', {
+            console.log('Logging in with:', { emailOrPhone, password }); // Log the login attempt
+            const response = await fetch('http://localhost:5000/buyer/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include', // This is important for including cookies
                 body: JSON.stringify({ emailOrPhone, password }),
             });
-
+            
             if (response.ok) {
                 alert('Logged in successfully');
+                navigate('/home'); // Redirect to the home page
             } else {
                 const errorData = await response.json();
                 alert(`Error logging in: ${errorData.message || response.statusText}`);
             }
         } catch (error) {
-            alert('An error occurred while logging in. Please try again later.');
+            console.error('Fetch error:', error);
+            alert('An error occurred while logging in. Please try again later.'); 
         }
     };
 
     return (
         <div className="login-page">
-            <header className="top-header">
-                <div className="promo-message">
-                    {navbarPromoMsg} <a href="#">ShopNow</a>
+            <div>
+                <header>
+                    <Header/>
+                </header>
+            </div>
+
+            <nav className="login-navbar">
+                <div className="login-navbar-container">
+                    <div className="login-navbar-logo">{navbarLogo}</div>
+                    <ul className="login-navbar-menu">
+                        {navbarLinks.map((link, index) => (
+                            <li key={index}>
+                                <Link to={link.url}>{link.label}</Link>
+                            </li>
+                        ))}
+                        <li>
+                            <Link to="/signup">Sign up</Link>
+                        </li>
+                    </ul>
                 </div>
-                <div className="top-header-right">
-                    <select className="language-select">
-                        <option value="en">English</option>
-                        <option value="es">Spanish</option>
-                    </select>
-                </div>
-            </header>
-            <nav className="navbar">
-  <div className="navbar-container">
-    <div className="navbar-logo">{navbarLogo}</div>
-    <ul className="navbar-menu">
-      {navbarLinks.map((link, index) => (
-        <li key={index}>
-          <Link to={link.url}>{link.label}</Link>
-        </li>
-      ))}
-      {/* Add the "Sign up" link */}
-      <li>
-        <Link to="/signup">Sign up</Link>
-      </li>
-    </ul>
-  </div>
-</nav>
+            </nav>
 
             <div className="banner">
                 <img src={shoping} alt="Shopping bags" />
@@ -160,52 +152,9 @@ const Login = () => {
                     <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
                 </div>
             </div>
-            <footer>
-                <div className="footer-container">
-                    <div className="footer-sections">
-                        <div className="footer-section">
-                            <address>
-                                <h4>Address</h4>
-                                {footerAddress.addressLine1}<br />
-                                {footerAddress.city}, {footerAddress.state}, {footerAddress.zip}<br />
-                                {footerAddress.email}<br />
-                                {footerAddress.phone}
-                            </address>
-                        </div>
-                        <div className="footer-section">
-                            <h4>Account</h4>
-                            <ul>
-                                {footerAccountLinks.map((link, index) => (
-                                    <li key={index}>
-                                        <Link to={link.url}>{link.label}</Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div className="footer-section">
-                            <h4>Let us help you</h4>
-                            <ul>
-                                {footerHelpLinks.map((link, index) => (
-                                    <li key={index}>
-                                        <Link to={link.url}>{link.label}</Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="footer-bottom">
-                        <div className="social-icons">
-                            <FaFacebook />
-                            <FaTwitter />
-                            <FaInstagram />
-                            <FaLinkedin />
-                        </div>
-                        <div className="copyright">
-                            <RiCopyrightLine /> 2023 DealDone. All Rights Reserved.
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <div>
+                <Footer/>
+            </div>
         </div>
     );
 };

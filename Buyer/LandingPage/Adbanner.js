@@ -20,10 +20,16 @@ const AdBanner = () => {
 
     return (
         <div className="ad-banner">
-            {videoUrl ? (
-                <video src={videoUrl} autoPlay loop muted playsInline className="ad-video" />
-            ) : (
-                <p>Loading...</p> // Optional: Show a loading message or spinner
+            {videoUrl && (
+                <video 
+                    src={videoUrl} 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline 
+                    preload="auto"  // Preload video without displaying a loading spinner
+                    className="ad-video" 
+                />
             )}
         </div>
     );

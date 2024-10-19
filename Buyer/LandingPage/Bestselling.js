@@ -7,8 +7,7 @@ const BestSellingProducts = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Replace '/api/products/best-selling' with your actual backend endpoint
-        fetch('/api/products/best-selling')
+        fetch('http://localhost:5000/buyer/')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -26,9 +25,11 @@ const BestSellingProducts = () => {
             });
     }, []);
 
+  
+
     return (
         <div className="best-selling-products">
-            <div className="header">
+            <div className="Bestsellingheader">
                 <h1>Best Selling Products</h1>
                 <button className="view-all-btn">View All</button>
             </div>

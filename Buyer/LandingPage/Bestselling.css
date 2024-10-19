@@ -2,19 +2,19 @@
     padding: 20px;
 }
 
-.header {
+.Bestsellingheader {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.header h1 {
+.Bestsellingheader h1 {
     font-size: 24px;
     font-weight: bold;
 }
 
-.header h2 {
+.Bestsellingheader h2 {
     color: rgb(0, 0, 0);
 }
 

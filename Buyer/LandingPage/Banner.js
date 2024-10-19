@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import './Banner.css';
 
+
 const Banner = () => {
   const [bannerImages, setBannerImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [image, setImage] = useState(null);
+  const [menuItems, setMenuItems] = useState([]);
+
 
   useEffect(() => {
     // Fetch banner images from the backend
     const fetchBannerImages = async () => {
       try {
-        const response = await fetch('http://localhost:5000/buyer/banner'); // Replace with your actual API endpoint
+        const response = await fetch('http://localhost:5000/banner'); // Replace with your actual API endpoint
         const data = await response.json();
         setBannerImages(data);
       } catch (error) {
@@ -20,6 +23,8 @@ const Banner = () => {
 
     fetchBannerImages();
   }, []);
+
+  
 
   useEffect(() => {
     // Set up an interval to change the banner image every 5 seconds

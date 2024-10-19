@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link for navigation
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import search from '../Assets/images/search.png';
 import wishlist from '../Assets/images/heart.png';
 import cart from '../Assets/images/cart.png';
@@ -7,26 +7,46 @@ import account from '../Assets/images/account.png';
 import './Homenav.css';
 
 const Navbar = () => {
+    const [navbarData, setNavbarData] = useState(null);
+
+    useEffect(() => {
+        // Fetch the Homenavbar property data from the JSON file
+        fetch('Buyer_property/propertyfile.json')
+        .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => setNavbarData(data))
+            .catch((error) => console.error('Error fetching Homenavbar property file:', error));
+    }, []);
+
+    if (!navbarData) {
+        return <div>Loading...</div>; // Show loading until the data is fetched
+    }
+
     return (
-        <nav className="navbar">
-            <div className="navbar-container">
-                <div className="navbar-logo">DealDone</div>
-                <ul className="navbar-menu">
-                    <li><Link to="/" className="Button">Home</Link></li>
-                    <li><Link to="/contact" className="Button">Contact</Link></li>
-                    <li><Link to="/about" className="Button">About</Link></li>
-                    <li><Link to="/address" className="Button">Address</Link></li>
+        <nav className="Homenavbar">
+            <div className="Homenavbar-container">
+                <div className="Homenavbar-logo">{navbarData.logo}</div>
+                <ul className="Homenavbar-menu">
+                    {navbarData.menuItems.map((item, index) => (
+                        <li key={index}>
+                            <Link to={item.url} className="Button">{item.label}</Link>
+                        </li>
+                    ))}
                 </ul>
-                <div className="navbar-right">
-                    <div className="search-container">
+                <div className="Homenavbar-right">
+                    <div className="Homesearch-container">
                         <input
                             type="text"
-                            placeholder="What are you looking for?"
-                            className="search-input"
+                            placeholder={"What are you looking"}
+                            className="Homesearch-input"
                         />
-                        <button className="search-button">
+                        <button className="Homesearch-button">
                             <img src={search} alt="search" />
-                        </button>
+                        </button>   
                     </div>
                     <div className="icon-container">
                         <button className="wishlist-button">
@@ -35,7 +55,6 @@ const Navbar = () => {
                         <button className="cart-button">
                             <img src={cart} alt="cart" />
                         </button>
-                        {/* Correct the Link component usage */}
                         <Link to="/account" className="cart-button">
                             <img src={account} alt="account" />
                         </Link>

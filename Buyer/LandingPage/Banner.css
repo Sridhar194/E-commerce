@@ -26,6 +26,11 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+.home-sidebar-menu li.active,
+.home-sidebar-menu li:hover {
+  color: #000;
+  font-weight: bold;
+}
 
 .home-banner {
   flex-grow: 1;

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Bestselling.css';
+import './Ourproducts.css';
 
 const products = [
     {
@@ -40,12 +40,12 @@ const products = [
     }
 ];
 
-const BestSellingProducts = () => {
+const ExploreOurProducts = () => {
     return (
         <div className="best-selling-products">
-            <div className="header">
-                <h1>Best Selling Products</h1>
-                <button className="view-all-btn">View All</button>
+            <div className="Ourproductsheader">
+                <h1>Explore our Products</h1>
+                <button className="our-view-all-btn">View All</button>
             </div>
             <div className="products-grid">
                 {products.map(product => (
@@ -75,4 +75,4 @@ const BestSellingProducts = () => {
     );
 };
 
-export default BestSellingProducts;
+export default ExploreOurProducts;
