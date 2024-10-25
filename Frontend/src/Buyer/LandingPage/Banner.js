@@ -1,13 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import './Banner.css';
 
-
 const Banner = () => {
   const [bannerImages, setBannerImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [image, setImage] = useState(null);
   const [menuItems, setMenuItems] = useState([]);
 
+  useEffect(() => {
+    // Fetch property file
+    const fetchPropertyFile = async () => {
+      try {
+        const response = await fetch('Buyer_Property/propertyfile.json');
+        const data = await response.json();
+        setMenuItems(data.homeSidebar.menuItems); // Set menuItems from property file
+      } catch (error) {
+        console.error('Error fetching property file:', error);
+      }
+    };
+
+    fetchPropertyFile();
+  }, []);
 
   useEffect(() => {
     // Fetch banner images from the backend
@@ -24,15 +37,11 @@ const Banner = () => {
     fetchBannerImages();
   }, []);
 
-  
-
   useEffect(() => {
-    // Set up an interval to change the banner image every 5 seconds
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
     }, 5000);
 
-    // Clear the interval when the component unmounts
     return () => clearInterval(interval);
   }, [bannerImages]);
 
@@ -43,10 +52,9 @@ const Banner = () => {
   };
 
   const handleNextClick = () => {
-    setCurrentIndex((prevIndex) =>
-      (prevIndex + 1) % bannerImages.length
-    );
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
   };
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     const imgname = file.name;
@@ -81,20 +89,13 @@ const Banner = () => {
     };
   };
 
-
   return (
     <div className="home-banner-container">
       <div className="home-sidebar">
         <ul className="home-sidebar-menu">
-          <li>Women's Fashion</li>
-          <li>Men's Fashion</li>
-          <li>Electronics</li>
-          <li>Home & Lifestyle</li>
-          <li>Medicine</li>
-          <li>Sports & Outdoor</li>
-          <li>Baby's & Toys</li>
-          <li>Groceries & Pets</li>
-          <li>Health & Beauty</li>
+          {menuItems.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
         </ul>
       </div>
       <div className="home-banner">
