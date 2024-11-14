@@ -1,0 +1,192 @@
+/* General button styling */
+.Button {
+  display: inline-block;
+  padding: 10px 10px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  text-decoration: none; /* Remove underline from links */
+  text-align: center;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Navbar container */
+.Landingnavbar-container {
+  display: flex;
+  justify-content: space-between; /* Align items horizontally */
+  align-items: center; /* Ensure vertical alignment */
+  padding: 10px 20px; /* Padding around the navbar */
+  box-sizing: border-box;
+  flex-wrap: wrap; /* Allows wrapping to prevent overlap */
+ padding-top: 30px;
+
+}
+
+/* Navbar styling */
+.Landingnavbar {
+  background-color: rgb(255, 248, 248);
+  padding: 10px;
+  padding-top: 300px;
+  border-bottom: 1px solid #000;
+  position: sticky;
+  z-index: 999;
+  width: 100%;}
+
+/* Logo styling */
+.Landingnavbar-logo {
+  font-size: 32px;
+  font-weight: bold;
+  padding-left: 50px;
+  flex-shrink: 0; /* Ensure the logo doesn’t shrink */
+}
+
+/* Navbar menu */
+.Landingnavbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1; /* Take up remaining space */
+  justify-content: center; /* Center the menu */
+}
+
+/* Individual navbar item styling */
+.Landingnavbar-menu li {
+  cursor: pointer;
+  padding: 10px;
+  margin: 10px 10px; /* Adjusted margin for spacing */
+}
+
+/* Navbar right section */
+.Landingnavbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 50px;
+}
+
+/* Search container */
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 150px;
+  width: 300px; /* Adjusted width */
+}
+
+.search-container:focus-within {
+  border-color: #000;
+}
+
+/* Search input styling */
+.search-input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 5px;
+}
+
+/* Search button styling */
+.search-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.search-button img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon container */
+.icon-container {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+/* Wishlist and Cart Buttons */
+.wishlist-button, .cart-button {
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.wishlist-button img, .cart-button img {
+  width: 30px;
+  height: 30px;
+}
+
+/* Sign-in dropdown container */
+.sign-in-container {
+  position: relative;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #000;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 10;
+  min-width: 150px;
+}
+
+.dropdown-item {
+  padding: 10px;
+  color: #fff;
+}
+
+.dropdown-item:hover {
+  background-color: #b10000;
+}
+
+/* Sidebar and banner container */
+.sidebar-banner-container {
+  display: flex;
+  margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .Landingnavbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .Landingnavbar-logo {
+    padding-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .Landingnavbar-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .Landingnavbar-right {
+    margin-right: 0;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .search-container {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .icon-container {
+    margin-right: 0;
+  }
+}

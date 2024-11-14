@@ -1,0 +1,167 @@
+/* General button styling */
+.Button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+/* HomeNavbar container */
+.Homenavbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  max-width: 100%; /* Prevents overflow */
+  box-sizing: border-box; /* Include padding in the element's width */
+  flex-wrap: wrap;
+}
+
+/* HomeNavbar styling */
+.Homenavbar {
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  border-bottom: 1px solid #000;
+  position: sticky;
+  top: 25px; /* Adjust this value to the height of your header */
+  z-index: 999;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+/* Logo styling */
+.Homenavbar-logo {
+  font-size: 32px;
+  font-weight: bold;
+  padding-left: 20px; /* Reduced padding to prevent overflow */
+}
+
+/* HomeNavbar menu styling */
+.Homenavbar-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.Homenavbar-menu li {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+/* HomeNavbar right section */
+.Homenavbar-right {
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Reduced margin to avoid overflow */
+  flex-wrap: wrap;
+}
+
+/* HomeSearch container */
+.Homesearch-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  width: 250px; /* Adjusted width for better fitting */
+  box-sizing: border-box; /* Prevents overflow */
+  
+}
+
+.Homesearch-container:focus-within {
+  border-color: #000;
+}
+
+/* HomeSearch input styling */
+.Homesearch-input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 5px;
+}
+
+/* HomeSearch button styling */
+.Homesearch-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* HomeSearch icon size */
+.Homesearch-button img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon container */
+.icon-container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px; /* Reduced margin to avoid overflow */
+}
+
+/* Wishlist, Cart, and Account Buttons */
+.wishlist-button,
+.cart-button {
+  background: none;
+  border: none;
+  padding: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Adjusted size for Icons */
+.wishlist-button img,
+.cart-button img {
+  width: 30px;
+  height: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .Homenavbar-container {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+  }
+
+  .Homenavbar-logo {
+      padding-left: 0;
+      margin-bottom: 10px;
+  }
+
+  .Homenavbar-menu {
+      flex-direction: column;
+      width: 100%;
+  }
+
+  .Homenavbar-menu li {
+      margin: 10px 0;
+  }
+
+  .Homenavbar-right {
+      margin-right: 0;
+      width: 100%;
+      justify-content: flex-start;
+  }
+
+  .Homesearch-container {
+      width: 100%;
+      margin-bottom: 10px;
+  }
+
+  .icon-container {
+      margin-left: 0;
+      width: 100%;
+      justify-content: flex-start;
+  }
+}
