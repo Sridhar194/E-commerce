@@ -32,15 +32,6 @@
     "signupText": "Sign up"
   },
 
-  "signupPage": {
-    "formHeading": "Create an account",
-    "formSubHeading": "Enter your details below",
-    "submitButtonLabel": "Create Account",
-    "googleButtonLabel": "Sign up with Google",
-    "alreadyAccountText": "Already have an account?",
-    "loginText": "Log in"
-  },
-
   "sidebarMenu": [
     { "label": "Women's Fashion" },
     { "label": "Men's Fashion" },
@@ -97,20 +88,24 @@
       "+88015-88888-9999"
     ]
   },
+  
   "account": {
     "heading": "Account",
     "links": ["My Account", "Login / Register", "Cart", "Wishlist", "Shop"]
   },
+
   "help": {
     "heading": "Let us help you",
     "links": ["Privacy Policy", "Terms Of Use", "FAQ", "Contact", "Help"]
   },
+
   "social": {
     "facebook": "https://www.facebook.com",
     "twitter": "https://www.twitter.com",
     "instagram": "https://www.instagram.com",
     "linkedin": "https://www.linkedin.com"
   },
+
   "copyright": "Copyright DealDone 2024. All rights reserved",
 
   "homeSidebar": {
@@ -125,5 +120,30 @@
       "Groceries & Pets",
       "Health & Beauty"
     ]
-  }
+  },
+
+  
+    "Account": {
+        "manageMyAccount": "Manage My Account",
+        "myProfile": "My Profile",
+        "security": "Security",
+        "myPaymentOptions": "My Payment Options",
+        "myOrders": "My Orders",
+        "myCancellations": "My Cancellations",
+        "myReturns": "My Returns",
+        "myOrderHistory": "My Order History",
+        "myWishlist": "My Wishlist",
+        "editYourProfile": "Edit Your Profile",
+        "name": "Name",
+        "phone": "Phone",
+        "email": "Email",
+        "address": "Address",
+        "edit": "Edit",
+        "saveChanges": "Save Changes"
+    }
 }
+
+  
+    
+  
+
